@@ -1,0 +1,90 @@
+#src/Materiaweb/MateriaBundle/Resources/config/doctrine/ArticulosMarcacion.orm.yml
+Materiaweb\MateriaBundle\Entity\ArticulosMarcacion:
+    type: entity
+    table: ArticulosMarcacion
+    id:
+        ArtMarcIdTabla:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+      ArtMarcCodart:
+          type: integer
+          nullable: false
+          column: ArtMarcCodart
+      ArtMarcNroOrden:
+          type: smallint
+          nullable: false
+          column: ArtMarcNroOrden
+      ArtMarcDetalle:
+          type: string
+          column: ArtMarcDetalle
+      ArtMarcPrecioNetoOrigen1:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcPrecioNetoOrigen1
+      ArtMarcAdicAntesCalc:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcAdicAntesCalc
+      ArtMarcPrecioNetoOrigen2:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcPrecioNetoOrigen2
+      ArtMarcValor:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcValor
+      ArtMarcPrecioNetoCalculado:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcPrecioNetoCalculado
+      ArtMarcAlicutaImp1:
+          type: decimal
+          length: 5
+          scale: 2
+          column: ArtMarcAlicutaImp1
+      ArtMarcValorImp1:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcValorImp1
+      ArtMarcAlicutaImp2:
+          type: decimal
+          length: 5
+          scale: 2
+          column: ArtMarcAlicutaImp2
+      ArtMarcValorImp2:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcValorImp2
+      ArtMarcAlicutaImp3:
+          type: decimal
+          length: 5
+          scale: 2
+          column: ArtMarcAlicutaImp3
+      ArtMarcValorImp3:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcValorImp3
+      ArtMarcPrecioFinalCalculado:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcPrecioFinalCalculado
+      ArtMarcAdicDpsCalculo:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcAdicDpsCalculo
+      ArtMarcPrecioFinal:
+          type: decimal
+          length: 9
+          scale: 6
+          column: ArtMarcPrecioFinal

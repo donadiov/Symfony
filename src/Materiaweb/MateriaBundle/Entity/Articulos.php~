@@ -1,0 +1,31 @@
+<?php
+
+namespace Materiaweb\MateriaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Articulos
+ */
+class Articulos
+{
+	private $articuloId;
+	private $articuloIdCompany;
+	private $articuloCodart;
+	private $articuloCodartAlternativo;
+	private $articuloCategoria;
+	private $articuloCodigoFamilia;
+	private $articuloNombre;
+	private $articuloNombreReduc;
+	private $articuloUnidad;
+	private $articuloCantxBulto;
+	private $articuloBultoxPallet;
+	private $articuloKgsUnidad;
+	private $articuloCodAlicuota;
+	private $articuloPuntoContVenta;
+	private $articuloPuntoContCompra;
+	private $articuloExistMinima;
+	private $articuloExistMaxima;
+	private $articuloCodigoBarra;
+	private $articuloPresentacion;
+}

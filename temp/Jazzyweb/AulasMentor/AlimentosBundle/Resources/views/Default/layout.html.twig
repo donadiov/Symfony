@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+ <link href="{{ asset('bundles/jazzywebaulasmentoralimentos/css/style.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+
+{% block body %}
+<div id="cabecera">
+  <h1>Información de alimentos</h1>
+</div>
+
+<div id="menu">
+<hr/>
+  <a href="{{ path('JazzywebAulasMentorAlimentosBundle_homepage')}}">inicio</a> |
+  <a href="{{ path('JazzywebAulasMentorAlimentosBundle_listar')}}">Ver alimentos</a> |
+  <a href="{{ path('JazzywebAulasMentorAlimentosBundle_insertar')}}">Insertar alimento</a> |
+  <a href="{{ path('JazzywebAulasMentorAlimentosBundle_buscar')}}">Buscar por nombre</a> |
+  <a href="{{ path('JazzywebAulasMentorAlimentosBundle_homepage')}}">Buscar por energia(TODO)</a> |
+  <a href="{{ path('JazzywebAulasMentorAlimentosBundle_homepage')}}">Búsqueda combinada(TODO)</a>
+<hr/>
+</div>
+
+<div id="contenido">
+{% block contenido %}
+
+{% endblock %}
+</div>
+
+<div id="pie">
+<hr/>
+<div align="center">- pie de página -</div>
+</div>
+
+{% endblock %}

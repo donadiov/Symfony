@@ -1,0 +1,146 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+{%block container %}
+<div class="container" >
+
+
+    <form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_listLineas')}}" data-validate="parsley">
+				<h2>Modificando linea {{ linea.lineaNumero }}</h2>
+
+				<table>
+					<tr>
+						<td>
+							<input type="hidden" id="lineaId" name="lineaId" class="input-xlarge" value="{{ linea.lineaId }} readonly">
+							<label>Numero</label>
+							<input type="text" id="lineaNumero" name="lineaNumero" class="input-xlarge" value="{{ linea.lineaNumero }}">
+						</td>
+						<td>
+							<label>Empresa</label>
+					        <select type="text" name="lineaEmpresa" class="select-xlarge" data-trigger="change" data-required="true">
+						        		<option value="{{ linea.lineaEmpresa }}">{{ linea.lineaEmpresa }}</option>
+						        	{% for empresa in empresas %}
+						        		{% if empresa.empresaNombre != linea.lineaEmpresa %}
+					   						<option value="{{ empresa.empresaNombre }}">{{ empresa.empresaNombre }}</option>
+										{% endif %}
+									{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Plan</label>
+							<input type="text" id="lineaPlan" name="lineaPlan" class="input-xlarge" value="{{ linea.lineaPlan }}">
+						</td>
+						<td>
+							<label>Destino</label>
+							<select type="text" id="lineaDestino" name="lineaDestino" class="select-xlarge" data-trigger="change" data-required="true">
+						        
+						        <option value="{{ linea.lineaDestino }}">{{ linea.lineaDestino }}</option>
+						        	{% for destino in destinos %}
+						        		{% if linea.lineaDestino != destino.DestinoNombre %}
+					   						<option value="{{ destino.DestinoNombre }}">{{ destino.DestinoNombre }}</option>
+										{% endif %}
+									{% endfor %}
+									
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Cargo</label>
+							<input type="text" id="lineaCargo" name="lineaCargo" class="input-xlarge" value="{{ linea.lineaCargo }}">
+						</td>
+						<td>
+							<label>IMEI</label>
+							<input type="text" id="lineaIMEI" name="lineaIMEI" class="input-xlarge" value="{{ linea.lineaIMEI }}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Marca</label>
+							<input type="text" id="lineaMarca" name="lineaMarca" class="input-xlarge" value="{{ linea.lineaMarca }}">
+						</td>
+						<td>
+							<label>Modelo</label>
+							<input type="text" id="lineaModelo" name="lineaModelo" class="input-xlarge" value="{{ linea.lineaModelo }}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Ultimo Cambio</label>
+							<input type="date" id="lineaUltimoCambio" name="lineaUltimoCambio" class="input-xlarge" value="{{ fecha|date('Y-m-d') }}" />
+						</td>
+						<td>
+							<label>Voz ($)</label>
+							<input type="text" id="lineaVoz" name="lineaVoz" class="input-xlarge" value="{{ linea.lineaVoz }}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>SMS ($)</label>
+							<input type="text" id="lineaSms" name="lineaSms" class="input-xlarge" value="{{ linea.lineaSms }}">
+						</td>
+						<td>
+							<label>GPRS ($)</label>
+							<input type="text" id="lineaGprs" name="lineaGprs" class="input-xlarge" value="{{ linea.lineaGprs }}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Datos</label>
+							<select type="text" name="lineaDatos" id="lineaDatos" class="select-xlarge" data-trigger="change" data-required="true" >
+						        	{% for opcion in opciones %}
+						        		{% if linea.lineaDatos == opcion.opcionesSNValue %}
+					   						<option value="{{ opcion.opcionesSNValue }}">{{ linea.lineaDatos }}</option>
+					   					{% endif %}
+					   				{% endfor %}
+					   				{% for opcion in opciones %}
+					   					{% if linea.lineaDatos != opcion.opcionesSNValue %}
+					   						<option value="{{ opcion.opcionesSNValue }}">{{ opcion.opcionesSNValue }}</option>
+					   					{% endif %}
+									{% endfor %}
+							</select>
+						</td>
+						<td>	
+							<label>BlackBerry</label>
+							<select type="text" name="lineaBlackberry" id="lineaBlackberry" class="select-xlarge" data-trigger="change" data-required="true">
+						        	{% for opcion in opciones %}
+						        		{% if linea.lineaBlackberry == opcion.opcionesSNValue %}
+					   						<option value="{{ opcion.opcionesSNValue }}">{{ linea.lineaBlackberry }}</option>
+					   					{% endif %}
+					   				{% endfor %}
+					   				{% for opcion in opciones %}
+					   					{% if linea.lineaBlackberry != opcion.opcionesSNValue %}
+					   						<option value="{{ opcion.opcionesSNValue }}">{{ opcion.opcionesSNValue }}</option>
+					   					{% endif %}
+									{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Roaming</label>
+							<select type="text" name="lineaRoaming" id="lineaRoaming" class="select-xlarge" data-trigger="change" data-required="true">
+						        	{% for opcion in opciones %}
+						        		{% if linea.lineaRoaming == opcion.opcionesSNValue %}
+					   						<option value="{{ opcion.opcionesSNValue }}">{{ linea.lineaRoaming }}</option>
+					   					{% endif %}
+					   				{% endfor %}
+					   				{% for opcion in opciones %}
+					   					{% if linea.lineaRoaming != opcion.opcionesSNValue %}
+					   						<option value="{{ opcion.opcionesSNValue }}">{{ opcion.opcionesSNValue }}</option>
+					   					{% endif %}
+									{% endfor %}
+							</select>
+						</td>
+						<td>
+							<label>Observaciones</label>
+							<textarea id="lineaObservaciones" name="lineaObservaciones" >{{ linea.lineaObservaciones }}</textarea>
+						</td>
+					</tr>
+				<table>
+
+				<button class="btn btn-primary" type="submit" >Guardar</button>
+			</form>
+</div>
+
+{%endblock%}

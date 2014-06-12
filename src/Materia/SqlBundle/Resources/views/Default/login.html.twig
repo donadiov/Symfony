@@ -1,0 +1,34 @@
+{%extends "MateriaSqlBundle:Default:index.html.twig"%}
+   {%block container %}
+<link href="{{asset('bundles/materiasql/css/login.css')}}" rel="stylesheet">
+    <div class="container">
+
+
+        <form class="form-signin" method ="POST" action="{{path('materia_sql_homepage')}}" data-validate="parsley">
+            
+            <h2 class="form-signin-heading">Ingrese sus Datos</h2>
+            	
+            	<select type="text" name="companyId" class="input-block-level" data-trigger="change" data-required="true" autofocus>
+		        		<option value="0">Seleccione su Empresa</option>
+		        	{% for company in companies %}
+        				<option value="{{ company.companyId }}">{{ company.companyClave }}</option>
+    				{% endfor %}
+  				</select>
+            	<input type="text" id="username" class="input-block-level" name="username" placeholder="Usuario" data-trigger="change" data-required="true">
+            	<input type="password" id="password" class="input-block-level" name="password" placeholder="Password" data-trigger="change" data-required="true">
+<!--        <label class="checkbox">
+                <input type="checkbox" name="remember" value="remember-me"> Recordarme
+			</label>			-->
+            <button id="login" class="btn btn-large btn-primary" type="submit">Login</button>
+            <a id="registro" href="{{path('materia_sql_new_company')}}" >Registro</a>
+        </form>
+
+    </div> 
+   
+    {% if name is defined%}
+    <div class="alert-info fade in">
+        <strong>{{name}}</strong>
+    </div>
+    {%endif%}
+
+    {%endblock%}

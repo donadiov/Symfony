@@ -1,0 +1,40 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+{%block container %}
+<div class="container" >
+
+
+    <form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_addUser')}}" data-validate="parsley">
+    
+        <h2>Alta de Usuario</h2>
+
+        <label>Nombre</label>
+        <input type="text" id="usuarioNombre" name="usuarioNombre" class="input-xlarge" data-trigger="change" data-required="true" >
+        
+        <label>Apellido</label>
+        <input type="text" id="usuarioApellido" name="usuarioApellido" class="input-xlarge" data-trigger="change" data-required="true" >
+        
+        <label>Mail</label>
+        <input type="text" id="usuarioMail" name="usuarioMail" class="input-xlarge" data-trigger="change" data-required="true" data-type="email" >
+        
+        <label>Usuario</label>
+        <input type="text" id="usuarioUsername" name="usuarioUsername" class="input-xlarge" data-trigger="change" data-required="true" >
+        
+        <label>password</label>
+        <input type="password" id="usuarioPass" name="usuarioPass" class="input-xlarge" data-trigger="change">
+        
+        <label>Rol</label>
+        <select type="text" name="usuarioRol" class="select-xlarge" data-trigger="change" data-required="true" value="Seleccionar...">
+        	{% for rol in roles %}
+        		{% if rol.rolNombre != "SUPER_ADMIN" %}
+   					<option value="{{ rol.rolNombre }}">{{ rol.rolNombre }}</option>
+      			{% endif %}
+      			
+			{% endfor %}
+		</select>
+        <div>
+         <button class="btn btn-primary" type="submit" >Guardar</button>
+        </div>
+    </form>
+</div>
+
+ {%endblock%}

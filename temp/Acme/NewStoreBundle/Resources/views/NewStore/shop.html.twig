@@ -1,0 +1,26 @@
+{% block javascript %}
+
+<script type="text/JavaScript">
+
+(function(){
+	var page_category = 'shop';
+	var url = document.URL;
+	var route_position = url.indexOf(page_category);
+	var route_segments = url.substring(route_position, url.length);
+	var slash_count = route_segments.split("/").length -1;
+	
+	if(slash_count != 2){
+		irl = 'http://{{ app.request.host }}/symfony/web/app_dev.php/shop/{{ categoria }}/{{ producto }}';
+		window.location = url;
+	}
+})
+
+</script>
+
+{% endblock %}
+
+
+<h1>Bienvenido a una pagina de no-redireccion</h1>
+
+<h2>La categoria que se le esta mostrando es: {{ categoria }}</h2>
+<h4>El producto que se le esta mostrando es: {{ producto }}</h4>

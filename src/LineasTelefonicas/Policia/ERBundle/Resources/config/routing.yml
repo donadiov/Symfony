@@ -1,0 +1,90 @@
+#LOGIN-LOGOUT
+lineas_telefonicas_policia_er_homepage:
+    pattern:  /
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Default:index }
+
+lineas_telefonicas_policia_er_logout:
+    pattern:  /login
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Default:logout }
+
+
+#USUARIOS
+lineas_telefonicas_policia_er_listDestinos:
+    pattern:  /lista-destinos
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Destinos:listDestinos }
+
+lineas_telefonicas_policia_er_deleteDestinos:
+    pattern:  /elimina-destinos
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Destinos:deleteDestinos }
+
+lineas_telefonicas_policia_er_saveDestinos:
+    pattern:  /guarda-destinos
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Destinos:saveDestinos }
+
+#USUARIOS
+lineas_telefonicas_policia_er_listUser:
+    pattern:  /lista-usuarios
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:User:listUser }
+    
+lineas_telefonicas_policia_er_addUser:
+    pattern:  /agrega-usuarios
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:User:addUser } 
+
+lineas_telefonicas_policia_er_editUser:
+    pattern:  /edita-usuario
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:User:editUser }
+
+lineas_telefonicas_policia_er_deleteUser:
+    pattern:  /elimina-usuarios
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:User:deleteUser }    
+
+
+#EMPRESAS
+lineas_telefonicas_policia_er_listCompany:
+    pattern:  /empresas
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Empresas:listCompany }
+
+lineas_telefonicas_policia_er_deleteCompany:
+    pattern:  /empresa
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Empresas:deleteCompany }
+    
+#LINEAS
+lineas_telefonicas_policia_er_listLineas:
+    pattern:  /lineas
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Lineas:listLineas }
+    
+lineas_telefonicas_policia_er_addLineas:
+    pattern:  /linea-agregada
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Lineas:addLineas }
+
+lineas_telefonicas_policia_er_deleteLineas:
+    pattern:  /linea-borrada
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Lineas:deleteLineas }
+    
+lineas_telefonicas_policia_er_editLineas:
+    pattern:  /edita-linea
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Lineas:editLineas }
+    
+lineas_telefonicas_policia_er_lineasHistory:
+    pattern:  /lineas-historico
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Lineas:listLineasHistorico }
+
+lineas_telefonicas_policia_er_buscaLineaNro:
+    pattern:  /busca-linea
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Lineas:buscaLineaNro }    
+    
+lineas_telefonicas_policia_er_buscaLineaDestino:
+    pattern:  /busca-linea-destino
+    defaults: { _controller: LineasTelefonicasPoliciaERBundle:Lineas:buscaLineaDestino }
+#     
+# lineas_telefonicas_policia_er_editLineas:
+    # pattern:  /empresa
+    # defaults: { _controller: LineasTelefonicasPoliciaERBundle:Empresas:editLineas }
+#     
+# lineas_telefonicas_policia_er_addLineas:
+    # pattern:  /planes
+    # defaults: { _controller: LineasTelefonicasPoliciaERBundle:Empresas:addLineas }
+#     
+# lineas_telefonicas_policia_er_deleteLineas:
+    # pattern:  /plan
+    # defaults: { _controller: LineasTelefonicasPoliciaERBundle:Empresas:deleteLineas }

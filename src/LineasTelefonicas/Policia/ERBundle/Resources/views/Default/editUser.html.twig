@@ -1,0 +1,43 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+{%block container %}
+<div class="container" >
+
+
+    <form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_listUser')}}" data-validate="parsley">
+    
+         <h2>Modificando Usuario {{ usuario.usuarioNombre }} {{ usuario.usuarioApellido }}</h2>
+
+	    <label>Id de usuario</label> <input type="text" id="usuarioId" name="usuarioId" class="input-xlarge" readonly value="{{ usuario.usuarioId }}">
+        
+        <label>Nombre</label>
+        <input type="text" id="usuarioNombre" name="usuarioNombre" class="input-xlarge" data-trigger="change" data-required="true" value="{{ usuario.usuarioNombre }}">
+        
+        <label>Apellido</label>
+        <input type="text" id="usuarioApellido" name="usuarioApellido" class="input-xlarge" data-trigger="change" data-required="true" value="{{ usuario.usuarioApellido }}">
+        
+        <label>Mail</label>
+        <input type="text" id="usuarioMail" name="usuarioMail" class="input-xlarge" data-trigger="change" data-required="true" data-type="email" value="{{ usuario.usuarioMail }}">
+        
+        <label>Usuario</label>
+        <input type="text" id="usuarioUsername" name="usuarioUsername" class="input-xlarge" data-trigger="change" data-required="true" value="{{ usuario.usuarioUsername }}">
+        
+        <label>password</label>
+        <input type="password" id="usuarioPass" name="usuarioPass" class="input-xlarge" data-trigger="change">
+        
+        <label>Rol</label>
+        <select type="text" name="usuarioRol" class="select-xlarge" data-trigger="change" data-required="true" value="{{ usuario.usuarioRol }}">
+        			<option value="{{ usuario.usuarioRol }}">{{ usuario.usuarioRol }}</option>
+        	{% for rol in roles %}
+        		{% if rol.rolNombre != "SUPER_ADMIN" and usuario.usuarioRol != 'SUPER_ADMIN' and rol.rolNombre != usuario.usuarioRol %}
+   					<option value="{{ rol.rolNombre }}">{{ rol.rolNombre }}</option>
+      			{% endif %}
+      			
+			{% endfor %}
+		</select>
+        <div>
+         <button class="btn btn-primary" type="submit" >Guardar</button>
+        </div>
+    </form>
+</div>
+
+ {%endblock%}

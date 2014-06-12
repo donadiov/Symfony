@@ -1,0 +1,172 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+   {%block container %}
+<div class="container">
+    <h2>Bienvenido {{ login.loginNombre }} {{ login.loginApellido }}<small> - Rol: {{ login.Rol }}</small></h2>
+    	<form id="form" class="well2" style="float:left;" method="POST" action="{{path('lineas_telefonicas_policia_er_buscaLineaNro')}}" data-validate="parsley">
+			<label>Buscar Nro. de Linea: 
+				<input type="text" id="lineaNumero" name="lineaNumero" class="input-xlarge"/>
+				<button class="btn btn-primary" type="submit" >Buscar</button>
+			</label>
+	    </form>
+	    
+	    
+	    <form id="well" class="well2" method="POST" action="{{path('lineas_telefonicas_policia_er_buscaLineaDestino')}}" data-validate="parsley">
+			<label>ver Lineas por destino: 
+				<select type="text" name="lineaDestino" id="lineaDestino" class="select-xlarge" data-trigger="change" data-required="true" >
+		        		<option>Seleccione</option>
+		        	{% for destino in destinos %}
+   						<option value="{{ destino.destinoNombre }}">{{ destino.destinoNombre }}</option>
+					{% endfor %}
+				</select>
+				<button class="btn btn-primary" type="submit" >Buscar</button>
+			</label>
+	    </form>
+
+	    <table class="botonera">
+	    	<tr>
+	    		<td>
+	    			<a href="{{path('lineas_telefonicas_policia_er_listLineas')}}"><button class="btn btn-primary">Ver todas las Lineas</button></a>
+	    		</td>
+	    		<td>
+	    			<button class="btn btn-primary" id="btnPopUpLinea">Nueva Linea</button>
+	    		</td>
+	    	</tr>
+	    </table>
+
+	    <script>
+			$(document).ready(function(){
+				$("#btnPopUpLinea").click(function(){
+				var $body = $(this.ie6 ? document.body : document);
+					$('.agregaObjeto').css({
+						width:  $body.width(),
+						height:  $body.height()
+					});
+					$(".agregaObjeto").toggle(); 
+				});
+					
+				$("#btnCloseLineaForm").click(function(){
+					$(".agregaObjeto").toggle(); 
+				});
+			});
+		</script>
+	    
+	    <div class="agregaObjeto" id="agregaObjeto" hidden >
+			<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_addLineas')}}" data-validate="parsley">
+				<h2>Ingrese los datos de la Linea</h2>
+
+				<table>
+					<tr>
+						<td>
+							<label>Numero</label>
+							<input type="text" id="lineaNumero" name="lineaNumero" class="input-xlarge">
+						</td>
+						<td>
+							<label>Empresa</label>
+					        <select type="text" name="lineaEmpresa" class="select-xlarge" data-trigger="change" data-required="true" value="Seleccionar...">
+						        	{% for empresa in empresas %}
+					   					<option value="{{ empresa.empresaNombre }}">{{ empresa.empresaNombre }}</option>
+									{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Plan</label>
+					        <input type="text" id="lineaPlan" name="lineaPlan" class="input-xlarge">
+						</td>
+						<td>
+							<label>Destino</label>
+							<select type="text" name="lineaDestino" id="lineaDestino" class="select-xlarge" data-trigger="change" data-required="true" >
+					        	{% for destino in destinos %}
+			   						<option value="{{ destino.destinoNombre }}">{{ destino.destinoNombre }}</option>
+								{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Cargo</label>
+							<input type="text" id="lineaCargo" name="lineaCargo" class="input-xlarge">
+						</td>
+						<td>
+							<label>IMEI</label>
+							<input type="text" id="lineaIMEI" name="lineaIMEI" class="input-xlarge">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Marca</label>
+							<input type="text" id="lineaMarca" name="lineaMarca" class="input-xlarge">
+						</td>
+						<td>
+							<label>Modelo</label>
+							<input type="text" id="lineaModelo" name="lineaModelo" class="input-xlarge">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Ultimo Cambio</label>
+							<input type="date" id="lineaUltimoCambio" name="lineaUltimoCambio" class="input-xlarge">
+						</td>
+						<td>
+							<label>Voz ($)</label>
+							<input type="text" id="lineaVoz" name="lineaVoz" class="input-xlarge">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>SMS ($)</label>
+							<input type="text" id="lineaSms" name="lineaSms" class="input-xlarge">
+						</td>
+						<td>
+							<label>GPRS ($)</label>
+							<input type="text" id="lineaGprs" name="lineaGprs" class="input-xlarge">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Datos</label>
+							<select type="text" name="lineaDatos" id="lineaDatos" class="select-xlarge" data-trigger="change" data-required="true" value="Seleccionar...">
+						        	{% for opcion in opciones %}
+					   					<option value="{{ opcion.opcionesSNValue }}">{{ opcion.opcionesSNValue }}</option>
+									{% endfor %}
+							</select>
+						</td>
+						<td>	
+							<label>BlackBerry</label>
+							<select type="text" name="lineaBlackberry" id="lineaBlackberry" class="select-xlarge" data-trigger="change" data-required="true" value="Seleccionar...">
+						        	{% for opcion in opciones %}
+					   					<option value="{{ opcion.opcionesSNValue }}">{{ opcion.opcionesSNValue }}</option>
+									{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Roaming</label>
+							<select type="text" name="lineaRoaming" id="lineaRoaming" class="select-xlarge" data-trigger="change" data-required="true" value="Seleccionar...">
+						        	{% for opcion in opciones %}
+					   					<option value="{{ opcion.opcionesSNValue }}">{{ opcion.opcionesSNValue }}</option>
+									{% endfor %}
+							</select>
+						</td>
+						<td>
+							<label>Observaciones</label>
+							<textarea id="lineaObservaciones" name="lineaObservaciones"></textarea>
+						</td>
+					</tr>
+				<table>
+
+				<button class="btn btn-primary" type="submit" >Agregar</button>
+				<span class="btn" id="btnCloseLineaForm">Cancelar</span>
+			</form>
+		</div>
+    
+    
+    
+ </div>
+ 
+ {%endblock%}

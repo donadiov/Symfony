@@ -1,0 +1,14 @@
+<?php
+
+namespace LineasTelefonicas\Policia\ERBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Destino
+ */
+class Destino
+{
+	private $destinoId;
+	private $destinoNombre;
+}

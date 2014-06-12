@@ -1,0 +1,17 @@
+<?php
+// src/Materia/Web/MateriawebBundle/Entity/Product.php
+
+namespace Materia\Web\MateriawebBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+class Product
+{
+    protected $name;
+ 
+    protected $price;
+ 
+    protected $description;
+}
+
+?>

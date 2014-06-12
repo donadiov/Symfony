@@ -1,0 +1,110 @@
+#src/Materiaweb/MateriaBundle/Resources/config/doctrine/Articulos.orm.yml
+Materiaweb\MateriaBundle\Entity\Articulos:
+    type: entity
+    table: Articulos
+    id:
+        articuloCodart:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+      articuloIdCompany:
+          type: integer
+          length: 2 
+          nullable: false
+          column: articuloIdCompany
+          unique: false
+      articuloCodartAlternativo:
+          type: integer
+          length: 10 
+          nullable: true
+          column: articuloCodartAlternativo
+          unique: false
+      articuloCodigoFamilia:
+          type: smallint
+          nullable: true
+          column: articuloCodigoFamilia
+          unique: false
+      articuloCategoria:
+          type: integer
+          length: 10 
+          nullable: true
+          column: articuloCategoria
+          unique: false
+      articuloNombre:
+          type: string
+          length: 100
+          nullable: true
+          column: articuloNombre
+          unique: false
+      articuloNombreReduc:
+          type: string
+          length: 20
+          nullable: true
+          column: articuloNombreReduc
+          unique: false
+      articuloUnidad:
+          type: string
+          length: 20
+          nullable: false
+          column: articuloUnidad
+          unique: false
+      articuloCantxBulto:
+          type: integer
+          nullable: true
+          column: articuloCantxBulto
+          unique: false
+      articuloBultoxPallet:
+          type: integer
+          nullable: true
+          column: articuloBultoxPallet
+          unique: false
+      articuloKgsUnidad:
+          type: decimal
+          length: 9
+          scale: 6
+          nullable: true
+          column: articuloKgsUnidad
+          unique: false
+      articuloCodAlicuota:
+          type: integer
+          nullable: true
+          column: articuloCodAlicuota
+          unique: false
+      articuloPuntoContVenta:
+          type: string
+          length: 20
+          nullable: true
+          column: articuloPuntoContVenta
+          unique: false
+      articuloPuntoContCompra:
+          type: string
+          length: 20
+          nullable: true
+          column: articuloPuntoContCompra
+          unique: false
+      articuloExistMinima:
+          type: decimal
+          length: 9
+          scale: 6
+          nullable: true
+          column: articuloExistMinima
+          unique: false
+      articuloExistMaxima:
+          type: decimal
+          length: 9
+          scale: 6
+          nullable: true
+          column: articuloExistMaxima
+          unique: false
+      articuloCodigoBarra:
+          type: string
+          length: 100
+          nullable: true
+          column: articuloCodigoBarra
+          unique: false
+      articuloPresentacion:
+          type: string
+          length: 100
+          nullable: true
+          column: articuloPresentacion
+          unique: false

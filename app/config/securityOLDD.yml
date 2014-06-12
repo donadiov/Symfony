@@ -1,0 +1,40 @@
+security:
+    encoders:
+        Acme\MainBundle\Entity\Usuario:
+            algorithm: sha512
+            encode-as-base64: true
+            iterations: 10
+ 
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER]
+        ROLE_TIT: [ROLE_USER]
+        ROLE_SUP: [ROLE_USER]
+        ROLE_USER: [ROLE_USER]
+ 
+    providers:
+        user_db:
+            entity: { class: Materia\Web\MateriawebBundle\Entity\Usuarios, property: usuario }
+ 
+    firewalls:
+        main:
+            pattern: /.*
+            provider: user_db
+            form_login:
+                login_path: /login
+                check_path: /login-check
+                remember_me: true
+            logout:
+                path: /logout
+                target: /
+            remember_me:
+                key: MiClaveSegura
+                lifetime: 1800
+                path: /.*
+                domain: ~
+            security: true
+            anonymous: true
+    access_control:
+        - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /user, roles: ROLE_USER }
+        - { path: /admin, roles: ROLE_ADMIN }
+        - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }

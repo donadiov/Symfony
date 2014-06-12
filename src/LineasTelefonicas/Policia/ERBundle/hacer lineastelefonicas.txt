@@ -1,0 +1,18 @@
+Lineas Telefonicas
+
+- Sacar Planes (ok)
+- Agregar en inicio accesos directos: buscador de lineas con resultado de datos o linea inexistente (ok)
+				      nueva linea.- (ok)
+				      listar lineas.- (ok)
+- agregar abm "destino"(ok)
+- en menu escudo comunicaciones esquina superior derecha(ok)
+- agregar botones volver sin guardar(ok)
+- titulos color azul(ok)
+
+- agregar boton imprimir en detalle de cada linea
+- agregar filtro en listar lineas.-
+
+
+
+
+

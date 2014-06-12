@@ -1,0 +1,19 @@
+<?php
+
+namespace Materiaweb\MateriaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ArticulosMarcacion
+ */
+class ArticulosMarcacion
+{
+	
+	private $ArtDescIdTabla;
+	private $ArtDescIdCompany;
+	private $ArtDescCodart;
+	private $ArtDescNroOrden;
+	private $ArtDescDetalle;
+	private $ArtDescValor;
+}

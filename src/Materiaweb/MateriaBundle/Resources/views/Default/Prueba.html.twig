@@ -1,0 +1,13 @@
+{%extends "MateriawebMateriaBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+   {%block container %}
+<div class="container">
+    <h2>Esta es la prueba para {{ login.username }}</h2>
+    <small>Su rol es {{ login.rol }}</small>
+    <br>
+    <small>Y su Id de empresa es {{ login.loginCompanyId }}</small>
+ </div> 
+<a href="{{path('materiaweb_materia_homepage')}}" >Volver</a>
+    {%endblock%}

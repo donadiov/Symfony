@@ -1,0 +1,32 @@
+#src/Materiaweb/MateriaBundle/Resources/config/doctrine/ArticulosRecargos.orm.yml
+Materiaweb\MateriaBundle\Entity\ArticulosRecargos:
+    type: entity
+    table: ArticulosRecargos
+    id:
+        ArtRecIdTabla:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+      ArtRecIdCompany:
+          type: integer
+          length: 2
+          nullable: false
+          column: ArtRecIdCompany
+      ArtRecCodart:
+          type: integer
+          nullable: false
+          column: ArtRecCodart
+      ArtRecNroOrden:
+          type: smallint
+          nullable: false
+          column: ArtRecNroOrden
+      ArtRecDetalle:
+          type: string
+          nullable: false
+          column: ArtRecDetalle
+      ArtRecValor:
+          type: decimal
+          length: 9
+          scale: 6
+          nullable: false
+          column: ArtRecValor

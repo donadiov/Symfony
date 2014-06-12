@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>MateriaWeb &middot; Proyecto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link href="{{asset('bundles/materiawebmateria/css/bootstrap.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/materiawebmateria/css/bootstrap-responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/materiawebmateria/css/parsley/parsley.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/materiawebmateria/css/style.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/materiawebmateria/css/menu.css')}}" rel="stylesheet">
+        
+        <script src="{{asset('bundles/materiawebmateria/js/jquery.js')}}"></script>
+		<script src="{{asset('bundles/materiawebmateria/js/bootstrap.js')}}"></script>
+		<script src="{{asset('bundles/materiawebmateria/js/parsley/parsley.min.js')}}"></script>
+		<script src="{{asset('bundles/materiawebmateria/js/parsley/parsley-standalone.min.js')}}"></script>
+		<script src="{{asset('bundles/materiawebmateria/js/parsley/parsley.extend.min.js')}}"></script>
+	</head>
+
+	<body>
+			
+				{% if login is defined %}
+					<nav>
+						{% if login.rol == "SUPER_ADMIN" %}
+				    		<ul id="nav">
+								<li><a href="{{path('materiaweb_materia_homepage')}}">Inicio</a></li>
+								<li><a href="#s1">Seguridad</a>
+		                    		<span id="s1"></span>
+				                    <ul class="subs">
+				                        <li><a href="#">Usuario</a>
+				                            <ul>
+				                                <li><a href="{{path('materiaweb_materia_admin_listUser')}}">Ver Todos</a></li>
+				                            </ul>
+				                        </li>
+				                        <li><a href="#">Empresas</a>
+				                            <ul>
+				                                <li><a href="{{path('materiaweb_materia_admin_listCompany')}}">Ver Todas</a></li>
+				                            </ul>
+				                        </li>
+				                    </ul>
+		                		</li>
+	                			<li><a href="{{path('materiaweb_materia_logout')}}" >Logout</a></li>
+	                		</ul>
+						{% elseif login.rol == "TITULAR" %}
+							<ul id="nav">
+								<li><a href="{{path('materiaweb_materia_homepage')}}">Inicio</a></li>
+								<li><a href="{{path('materiaweb_materia_logout')}}" >Logout</a></li>
+								<li><a href="#s1">Perfil</a>
+	                    			<span id="s1"></span>
+			                    	<ul class="subs">
+				                        <li><a href="#">Empresa</a>
+				                            <ul>
+				                                <li><a href="{{path('materiaweb_materia_editMyCompany')}}">Editar</a></li>
+				                            </ul>
+				                        </li>
+				                        <li><a href="#">Usuarios</a>
+				                            <ul>
+				                                <li><a href="{{path('materiaweb_materia_listCompanyUser')}}">Ver Todos</a></li>
+				                            </ul>
+				                        </li>
+			                 	   </ul>
+	                			</li>
+							</ul>
+					{% endif %}
+				</nav>
+			{% endif %}
+			
+		{% if mensaje is defined %}
+			<b><span style="color: red;">{{ mensaje }}</span></b>
+		{% endif %}
+		{%block container %}
+		{%endblock%}
+	
+		{%block javascripts %}
+		{%endblock%}
+		
+		{% block footer %}
+		<footer>
+                &copy; Copyright 2014 by <a href="http://materiaweb.dev/app_dev.php/materiaweb/">Materia Web</a>.
+        </footer>
+        {% endblock %}
+
+    </body>
+</html>
+

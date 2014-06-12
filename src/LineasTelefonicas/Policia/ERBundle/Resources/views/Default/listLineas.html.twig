@@ -1,0 +1,171 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+{%block container %}
+<div class="container">
+
+
+<h2>Lineas Telefonicas</h2>
+
+<script>
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#lineas tfoot th').each( function () {
+        var title = $('#lineas thead th').eq( $(this).index() ).text();
+        $(this).html( '<input type="text" placeholder="'+title+'" />' );
+    } );
+ 
+    // DataTable
+    var table = $('#lineas').DataTable();
+ 
+    // Apply the filter
+    table.columns().eq( 0 ).each( function ( colIdx ) {
+        $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+            table
+                .column( colIdx )
+                .search( this.value )
+                .draw();
+        } );
+    } );
+} );
+</script>
+
+	<table id="lineas" class="display" cellspacing="0" width="100%">
+   		<caption>Lista de Lineas Telefonicas</caption>
+   			<thead>
+				<tr>
+					 <th>Numero</th>
+					 <th>Empresa</th>
+					 <th>Plan</th>
+					 <th>Destino</th>
+					 <th>Cargo</th>
+					 <th>Marca</th>
+					 <th>Modelo</th>
+					 <th>Ult. Cambio</th>
+					 <th>Accion</th>
+		      		</tr>
+   			</thead>
+   			<tfoot>
+				<tr>
+					 <th>Numero</th>
+					 <th>Empresa</th>
+					 <th>Plan</th>
+					 <th>Destino</th>
+					 <th>Cargo</th>
+					 <th>Marca</th>
+					 <th>Modelo</th>
+					 <th>Ult. Cambio</th>
+					 <th>Accion</th>
+		      		</tr>
+   			</tfoot>
+   			<tbody>
+		    		{% for linea in lineas %}
+		      			<tr class="{{ cycle(['even', 'odd'], loop.index0) }} visible"  style="display: table-row;">
+		      				<td>{{ linea.lineaNumero }}</td>
+		      				<td>{{ linea.lineaEmpresa }}</td>
+		      				<td>{{ linea.lineaPlan }}</td>
+		      				<td>{{ linea.lineaDestino }}</td>
+		      				<td>{{ linea.lineaCargo }}</td>
+		      				<td>{{ linea.lineaMarca }}</td>
+		      				<td>{{ linea.lineaModelo }}</td>
+		      				<td>{{ linea.lineaUltimoCambio|date('d-m-y') }}</td>
+		      				<td>
+			      				<table>
+				      				<tr>
+				      					<a class="btn btnDetalles" id="btnPopUpDetalles{{ linea.lineaId }}"><img style="width:20px;" src="/bundles/LineasTelefonicasPoliciaER/images/detalles.png"/></a>
+										<a class="btn btneliminar" id="btnPopUpElimina{{ linea.lineaId }}"><img style="width:20px;" src="/bundles/LineasTelefonicasPoliciaER/images/cancel.png"/></a>
+										<script>
+											$(document).ready(function(){
+												$("#btnPopUpDetalles{{ linea.lineaId }}").click(function(){
+												var $body = $(this.ie6 ? document.body : document);
+												$('.detallesObjeto{{ linea.lineaId }}').css({
+													width:  $body.width(),
+													height:  $body.height()
+												});
+												$(".detallesObjeto{{ linea.lineaId }}").toggle();
+											});
+											$("#btnCloseDetalles{{ linea.lineaId }}").click(function(){
+											$(".detallesObjeto{{ linea.lineaId }}").toggle(); 
+												});
+											});
+										</script>
+										<script>
+										$(document).ready(function(){
+											$("#btnPopUpElimina{{ linea.lineaId }}").click(function(){
+											var $body = $(this.ie6 ? document.body : document);
+											$('.eliminaObjeto{{ linea.lineaId }}').css({
+												width:  $body.width(),
+												height:  $body.height()
+											});
+											$(".eliminaObjeto{{ linea.lineaId }}").toggle(); 
+										});
+										$("#btnCloseElimina{{ linea.lineaId }}").click(function(){
+										$(".eliminaObjeto{{ linea.lineaId }}").toggle(); 
+											});
+										});
+										</script>
+				      				</tr>
+			      				</table>
+		      				</td>
+					</tr>
+				{% endfor %}
+   			</tbody>
+		</table>
+		<button class="btn btn-primary" id="btnPopUpLinea">Nueva Linea</button>
+		
+		{% for linea in lineas %}
+			<div class="detallesObjeto{{ linea.lineaId }}" id="detallesObjeto" hidden>
+			<div>
+				<label><span>Numero:</span> {{ linea.lineaNumero }}</label>
+
+				<label><span>Empresa:</span> {{ linea.lineaEmpresa }}</label>
+
+				<label><span>Plan:</span>{{ linea.lineaPlan }}</label>
+
+				<label><span>Destino:</span> {{ linea.lineaDestino }}</label>
+
+				<label><span>Cargo:</span> {{ linea.lineaCargo }}</label>
+
+				<label><span>IMEI:</span> {{ linea.lineaIMEI }}</label>
+
+				<label><span>Marca:</span> {{ linea.lineaMarca }}</label>
+
+				<label><span>Modelo:</span> {{ linea.lineaModelo }}</label>
+
+				<label><span>Ultimo Cambio:</span> {{ linea.lineaUltimoCambio|date('d-m-y') }}</label>
+
+				<label><span>Voz:</span> $ {{ linea.lineaVoz }}</label>
+
+				<label><span>SMS:</span> $ {{ linea.lineaSms }}</label>
+
+				<label><span>GPRS:</span> $ {{ linea.lineaGprs }}</label>
+
+				<label><span>Datos:</span> {{ linea.lineaDatos }}</label>
+
+				<label><span>BlackBerry:</span> {{ linea.lineaBlackberry }}</label>
+
+				<label><span>Roaming:</span> {{ linea.lineaRoaming }}</label>
+
+				<label><span>Observaciones:</span> {{ linea.lineaObservaciones }}</label>
+
+				<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_editLineas')}}" data-validate="parsley">
+					<input type="Hidden" id="lineaId" name="lineaId" class="input-xlarge" readonly value="{{ linea.lineaId }}">
+					<span style="float:right;" class="btn" id="btnCloseDetalles{{ linea.lineaId }}">Cerrar</span>
+					<button type="submit" class="btn" id="btnCloseDetalles{{ linea.lineaId }}">Editar</button>
+				</form>
+			</div>
+			</div>
+			<div class="eliminaObjeto{{ linea.lineaId }}" id="eliminaObjeto" hidden>
+				<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_deleteLineas')}}" data-validate="parsley">
+					<span>Esta seguro que desea eliminar la Linea {{ linea.lineaNumero }}</span>
+					<input type="Hidden" id="lineaId" name="lineaId" class="input-xlarge" readonly value="{{ linea.lineaId }}">
+					<button class="btn btn-primary" type="submit" >Eliminar</button>
+					<span class="btn" id="btnCloseElimina{{ linea.lineaId }}">Cancelar</span>
+				</form>
+			</div>
+
+		{% endfor %}
+
+ </div> 
+{%endblock%}

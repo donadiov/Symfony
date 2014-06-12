@@ -1,0 +1,89 @@
+{%extends "MateriawebMateriaBundle:Default:index.html.twig"%}
+{%block container %}
+<div class="container" >
+
+{% if login.rol == 'SUPER_ADMIN' %}
+    <form id="form" class="well" method="POST" action="{{path('materiaweb_materia_admin_listCompany')}}" data-validate="parsley">
+{% else %}
+	<form id="form" class="well" method="POST" action="{{path('materiaweb_materia_editMyCompany')}}" data-validate="parsley">
+{% endif %}
+         <h2>Modificando Empresa {{ company.companyNombreFantasia }}</h2>
+{% if login.rol == 'SUPER_ADMIN' %}         
+        <input type="text" id="companyId" name="companyId" class="input-xlarge" readonly value="{{ company.companyId }}">
+{% else %}
+		<input type="Hidden" id="companyId" name="companyId" class="input-xlarge" readonly value="{{ company.companyId }}">
+{% endif %}
+        <label>Razon Social</label>
+        <input type="text" id="companyRazonSocial" name="companyRazonSocial" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyRazonSocial }}">
+        
+        <label>Nombre de Fantasia</label>
+        <input type="text" id="companyNombreFantasia" name="companyNombreFantasia" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyNombreFantasia }}">
+        
+        <label>Clave de empresa</label>
+        <input type="text" id="companyClave" name="companyClave" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyClave }}">
+        
+        <label>Direccion (calle)</label>
+        <input type="text" id="companyCalle" name="companyCalle" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyCalle }}">
+        
+        <label>Direccoin (Numero)</label>
+        <input type="text" id="companyCalleNro" name="companyCalleNro" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyCalleNro }}">
+        
+        <label>Ciudad</label>
+        <input type="text" id="companyLocalidad" name="companyLocalidad" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyLocalidad }}">
+        
+        <label>Provincia</label>
+        <input type="text" id="companyProvincia" name="companyProvincia" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyProvincia }}">
+        
+        <label>Pais</label>
+        <input type="text" id="companyPais" name="companyPais" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyPais }}">
+        
+        <label>Codigo Postal</label>
+        <input type="text" id="companyCp" name="companyCp" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyCp }}">
+        
+        <label>Cuit</label>
+        <input type="text" id="companyCuit" name="companyCuit" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyCuit }}">
+        
+        <label>Perfil Fiscal</label>
+        <input type="text" id="companyPerFiscal" name="companyPerFiscal" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyPerFiscal }}">
+        
+        <label>Condicion Ingresos brutos</label>
+        <input type="text" id="companyCondiibb" name="companyCondiibb" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyCondiibb }}">
+        
+        <label>Numero Ingresos Brutos</label>
+        <input type="text" id="companyNiibb" name="companyNiibb" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyNiibb }}">
+        
+        <label>Actividad</label>
+        <input type="text" id="companyActividad" name="companyActividad" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyActividad }}">
+        
+        <label>Observaciones</label>
+        <textarea type="text" id="companyObservaciones" name="companyObservaciones" class="input-xlarge" data-trigger="change">{{ company.companyObservaciones }}</textarea>
+        
+        <label>Nombre del Titular</label>
+        <input type="text" id="companyNombreTitular" name="companyNombreTitular" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyNombreTitular }}">
+        
+        <label>Apellido del Titular</label>
+        <input type="text" id="companyApellidoTitular" name="companyApellidoTitular" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyApellidoTitular }}">
+        
+        <label>Mail del Titular</label>
+        <input type="text" id="companyMail" name="companyMail" class="input-xlarge" data-trigger="change" data-required="true" data-type="email" value="{{ company.companyMail }}">
+        
+        <label>Usuario Titular</label>
+        <input type="text" id="companyUsuarioTitular" name="companyUsuarioTitular" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyUsuarioTitular }}">
+        
+        <label>Password</label>
+        <input type="password" id="companyPasswordTitular" name="companyPasswordTitular" class="input-xlarge" data-trigger="change">
+
+{% if login.rol == 'SUPER_ADMIN' %}        
+        <label>Activa</label>
+        <input type="number" min="0" max="1" id="companyActive" name="companyActive" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyActive }}">
+{% else %}
+		<label>El estado de su empresa es: <bold>ACTIVA</bold></label>
+        <input readonly type="Hidden" min="0" max="1" id="companyActive" name="companyActive" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyActive }}">
+{% endif %}        
+        <div>
+         <button class="btn btn-primary" type="submit" >Guardar</button>
+        </div>
+    </form>
+</div>
+
+ {%endblock%}

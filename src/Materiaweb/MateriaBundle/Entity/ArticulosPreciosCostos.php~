@@ -1,0 +1,20 @@
+<?php
+
+namespace Materiaweb\MateriaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ArticulosPreciosCostos
+ */
+class ArticulosPreciosCostos
+{
+	private $ArtPrecCostIdTabla;
+	private $ArtPrecCostIdCompany;
+	private $ArtPrecCostCodart;
+	private $ArtPrecCostNroOrden;
+	private $ArtPrecCostDetalle;
+	private $ArtPrecCostValor;
+	private $ArtPrecCostMoneda;
+	private $ArtPrecCostIdentificador;
+}

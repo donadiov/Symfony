@@ -1,0 +1,13 @@
+#src/Materiaweb/MateriaBundle/Resources/config/doctrine/Roles.orm.yml
+Materiaweb\MateriaBundle\Entity\Roles:
+    type: entity
+    table: Roles
+    id:
+        rolId:
+            type: integer
+    fields:
+        rolName:
+          type: string
+          length: 10 
+          nullable: false
+          column: rolName

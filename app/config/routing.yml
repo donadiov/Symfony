@@ -1,0 +1,24 @@
+lineas_telefonicas_policia_er:
+    resource: "@LineasTelefonicasPoliciaERBundle/Resources/config/routing.yml"
+    prefix:   /lineasTelefonicasPolicia
+
+materia_sql:
+    resource: "@MateriaSqlBundle/Resources/config/routing.yml"
+    prefix:   /materiasql
+
+materiaweb_materia:
+    resource: "@MateriawebMateriaBundle/Resources/config/routing.yml"
+    prefix:   /materiaweb
+
+#materia_web_materiaweb:
+#    resource: "@MateriaWebMateriawebBundle/Resources/config/routing.yml"
+#    prefix:   /materia
+
+acme_store:
+    resource: "@AcmeNewStoreBundle/Controller/"
+    type:     annotation
+    prefix:   /newstore
+    
+jazzyweb_aulas_mentor_alimentos:
+    resource: "@JazzywebAulasMentorAlimentosBundle/Resources/config/routing.yml"
+    prefix:   /alimentos

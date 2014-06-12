@@ -1,0 +1,16 @@
+{%extends "MateriaSqlBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+   {%block container %}
+<div class="container">
+    <h2>Bienvenido {{ login.username }}</h2>
+    <small>Su rol es {{ login.rol }}</small>
+    <br>
+    <small>Su Id de empresa es {{ login.loginCompanyId }}</small>
+	<br>
+	<small>Su ID de Usuario es {{ login.loginUserId }}</small>
+ </div>
+ 
+ {{ dump(login) }}
+    {%endblock%}

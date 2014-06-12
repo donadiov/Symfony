@@ -1,0 +1,54 @@
+{%extends "MateriaSqlBundle:Default:index.html.twig"%}
+{%block container %}
+<div class="container" >
+
+{% if login.rol == 'SUPER_ADMIN' %}
+    <form id="form" class="well" method="POST" action="{{path('materia_sql_admin_listUser')}}" data-validate="parsley">
+{% else %}
+	<form id="form" class="well" method="POST" action="{{path('materia_sql_listCompanyUser')}}" data-validate="parsley">
+{% endif %}
+
+    
+         <h2>Modificando Usuario {{ user.firstName }} {{ user.lastName }}</h2>
+         {% if login.rol == 'SUPER_ADMIN' %}
+		    <label>Id de usuario</label> <input type="text" id="userid" name="userid" class="input-xlarge" readonly value="{{ user.userid }}">
+		    <label>Empresa</label>
+        	<input type="text" id="company" name="company" class="input-xlarge" data-trigger="change" data-required="true" readonly value="{{ company }}">
+		{% else %}
+			<input style="display:none;" type="text" id="userid" name="userid" class="input-xlarge" readonly value="{{ user.userid }}">
+        	<input style="display:none;" type="text" id="company" name="company" class="input-xlarge" data-trigger="change" data-required="true" readonly value="{{ company }}">
+		{% endif %}
+        
+        <label>Nombre</label>
+        <input type="text" id="firstName" name="firstName" class="input-xlarge" data-trigger="change" data-required="true" value="{{ user.firstName }}">
+        
+        <label>Apellido</label>
+        <input type="text" id="lastName" name="lastName" class="input-xlarge" data-trigger="change" data-required="true" value="{{ user.lastName }}">
+        
+        <label>Mail</label>
+        <input type="text" id="userMail" name="userMail" class="input-xlarge" data-trigger="change" data-required="true" data-type="email" value="{{ user.userMail }}">
+        
+        <label>Usuario</label>
+        <input type="text" id="userName" name="userName" class="input-xlarge" data-trigger="change" data-required="true" value="{{ user.userName }}">
+        
+        <label>password</label>
+        <input type="password" id="password" name="password" class="input-xlarge" data-trigger="change">
+        
+        <label>Rol</label>
+        <select type="text" name="userRol" class="select-xlarge" data-trigger="change" data-required="true" value="{{ user.userRol }}">
+        			<option value="{{ user.userRol }}">{{ user.userRol }}</option>
+        	{% for rol in roles %}
+        		
+        		{% if user.userRol != rol.rolName and rol.rolName != "SUPER_ADMIN" and user.userRol != "TITULAR" and rol.rolName != "TITULAR" and user.userRol != "SUPER_ADMIN" %}
+   					<option value="{{ rol.rolName }}">{{ rol.rolName }}</option>
+      			{% endif %}
+      			
+			{% endfor %}
+		</select>
+        <div>
+         <button class="btn btn-primary" type="submit" >Guardar</button>
+        </div>
+    </form>
+</div>
+
+ {%endblock%}

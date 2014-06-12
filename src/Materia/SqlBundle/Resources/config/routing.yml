@@ -1,0 +1,55 @@
+#DEFAULT
+materia_sql_homepage:
+    pattern:  /
+    defaults: { _controller: MateriaSqlBundle:Default:index }
+
+materia_sql_new_company:
+    pattern:  /new-company
+    defaults: { _controller: MateriaSqlBundle:Default:newCompany }
+
+materia_sql_logout:
+    pattern:  /logout
+    defaults: { _controller: MateriaSqlBundle:Default:logout }
+    
+materia_sql_prueba:
+    pattern:  /prueba
+    defaults: { _controller: MateriaSqlBundle:Default:prueba }
+
+#USER    
+materia_sql_newUser:
+    pattern:  /new-user
+    defaults: { _controller: MateriaSqlBundle:Users:newUser }
+    
+materia_sql_saveUser:
+    pattern:  /save-user
+    defaults: { _controller: MateriaSqlBundle:Users:saveUser }
+
+materia_sql_editUser:
+    pattern:  /edit-user/{userid}
+    defaults: { _controller: MateriaSqlBundle:Users:editUser }
+
+materia_sql_listCompanyUser:
+    pattern:  /listCompanyUser
+    defaults: { _controller: MateriaSqlBundle:Users:listCompanyUser }
+    
+materia_sql_editCompanyUser:
+    pattern:  /editCompanyUser/{userId}
+    defaults: { _controller: MateriaSqlBundle:Users:editCompanyUser }
+    
+materia_sql_deleteCompanyUser:
+    pattern:  /deleteCompanyUser/{userid}
+    defaults: { _controller: MateriaSqlBundle:Users:deleteCompanyUser }
+
+#COPMANY
+materia_sql_editMyCompany:
+    pattern:  /edit-company/{companyId}
+    defaults: { _controller: MateriaSqlBundle:Empresas:editMyCompany }
+    
+#ADMIN
+materia_sql_admin_listCompany:
+    pattern:  /listCompany
+    defaults: { _controller: MateriaSqlBundle:Admin:listCompany }
+    
+materia_sql_admin_listUser:
+    pattern:  /listUser
+    defaults: { _controller: MateriaSqlBundle:Admin:listUser }

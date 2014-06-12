@@ -1,0 +1,24 @@
+{% extends 'JazzywebAulasMentorAlimentosBundle:Default:layout.html.twig' %}
+
+{% block contenido %}
+
+{% if mensaje is defined %}
+<b><span style="color: red;">{{ mensaje }}</span></b>
+{% endif %}
+<br/>
+<form name="formModificado" action="{{ path('JazzywebAulasMentorAlimentosBundle_elimina')}}" method="POST">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+        <tr>
+            <td><input name="id" value="{{ id }}" readonly/></td>
+            <td><input name="nombre" value="{{ nombre }}" readonly/></td>
+        </tr>
+
+    </table>
+    <span>Esta seguro que desea eliminar este registro?</span>
+    <input type="submit" value="Eilminar" name="elimina" />
+</form>
+{% endblock %}

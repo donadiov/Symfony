@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>MateriaWeb &middot; Proyecto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link href="{{asset('bundles/materiasql/css/bootstrap.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/materiasql/css/bootstrap-responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/materiasql/css/parsley/parsley.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/materiasql/css/style.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/materiasql/css/menu.css')}}" rel="stylesheet">
+        
+        <script src="{{asset('bundles/materiasql/js/jquery.js')}}"></script>
+		<script src="{{asset('bundles/materiasql/js/bootstrap.js')}}"></script>
+		<script src="{{asset('bundles/materiasql/js/parsley/parsley.min.js')}}"></script>
+		<script src="{{asset('bundles/materiasql/js/parsley/parsley-standalone.min.js')}}"></script>
+		<script src="{{asset('bundles/materiasql/js/parsley/parsley.extend.min.js')}}"></script>
+	</head>
+
+<script>
+
+$(document).click(function() {
+	$("#notificaion").fadeOut("slow");
+});
+
+$(document).click(function() {
+	$("#mensaje").fadeOut("slow");
+});
+
+</script>
+
+	<body>
+			
+				{% if login is defined %}
+					<nav>
+						{% if login.rol == "SUPER_ADMIN" %}
+				    		<ul id="nav">
+								<li><a href="{{path('materia_sql_homepage')}}">Inicio</a></li>
+								<li><a href="#s1">Seguridad</a>
+		                    		<span id="s1"></span>
+				                    <ul class="subs">
+				                        <li><a href="#">Usuario</a>
+				                            <ul>
+				                                <li><a href="{{path('materia_sql_admin_listUser')}}">Ver Todos</a></li>
+				                            </ul>
+				                        </li>
+				                        <li><a href="#">Empresas</a>
+				                            <ul>
+				                                <li><a href="{{path('materia_sql_admin_listCompany')}}">Ver Todas</a></li>
+				                            </ul>
+				                        </li>
+				                    </ul>
+		                		</li>
+	                			<li><a href="{{path('materia_sql_logout')}}" >Logout</a></li>
+	                		</ul>
+						{% elseif login.rol == "TITULAR" or login.rol == "ADMIN" %}
+							<ul id="nav">
+								<li><a href="{{path('materia_sql_homepage')}}">Inicio</a></li>
+								<li><a href="{{path('materia_sql_logout')}}" >Logout</a></li>
+								<li><a href="#s1">Perfil</a>
+	                    			<span id="s1"></span>
+			                    	<ul class="subs">
+				                        <li><a href="#">Empresa</a>
+				                            <ul>
+				                                <li><a href="{{path('materia_sql_editMyCompany', {'companyId': login.loginCompanyId})}}">Editar</a></li>
+				                            </ul>
+				                        </li>
+				                        <li><a href="#">Usuarios</a>
+				                            <ul>
+				                                <li><a href="{{path('materia_sql_listCompanyUser')}}">Ver Todos</a></li>
+				                            </ul>
+				                        </li>
+			                 	   </ul>
+	                			</li>
+							</ul>
+					{% endif %}
+				</nav>
+			{% endif %}
+			
+		{% if mensaje is defined %}
+			<section id="mensaje"><span>{{ mensaje }}</span></section>
+		{% endif %}
+		
+		{% if notificacion is defined %}
+			<section id="notificaion" ><span>{{ notificacion }}</span></section>
+		{% endif %}
+		{%block container %}
+		{%endblock%}
+	
+		{%block javascripts %}
+		{%endblock%}
+		
+		{% block footer %}
+		<footer>
+                &copy; Copyright 2014 by <a href="http://materiaweb.dev/app_dev.php/materiaweb/">Materia Web</a>.
+        </footer>
+        {% endblock %}
+
+    </body>
+</html>
+

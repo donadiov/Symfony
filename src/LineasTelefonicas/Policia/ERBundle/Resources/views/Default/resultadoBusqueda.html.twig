@@ -1,0 +1,294 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+{%block container %}
+<div class="container">
+
+<h2>Resultado de la busqueda</h2>
+
+		<table>
+   			<caption>Lista de Lineas Telefonicas</caption>
+   			<thead>
+		      <tr>
+		         <th>Numero</th>
+		         <th>Empresa</th>
+		         <th>Plan</th>
+		         <th>Destino</th>
+		         <th>Cargo</th>
+		         <th>Marca</th>
+		         <th>Modelo</th>
+		         <th>Ult. Cambio</th>
+		         <th>Acction</th>
+		         
+		      </tr>
+   			</thead>
+   			<tbody>
+		    	{% for linea in lineas %}
+		      			<tr class="{{ cycle(['even', 'odd'], loop.index0) }}">
+		      				<td>{{ linea.lineaNumero }}</td>
+		      				<td>{{ linea.lineaEmpresa }}</td>
+		      				<td>{{ linea.lineaPlan }}</td>
+		      				<td>{{ linea.lineaDestino }}</td>
+		      				<td>{{ linea.lineaCargo }}</td>
+		      				<td>{{ linea.lineaMarca }}</td>
+		      				<td>{{ linea.lineaModelo }}</td>
+		      				<td>{{ linea.lineaUltimoCambio|date('d-m-y') }}</td>
+		      				<td>
+								<a class="btn btneliminar" id="btnPopUpElimina{{ linea.lineaId }}">Eliminar</a>
+								<script>
+								$(document).ready(function(){
+								  $("#btnPopUpElimina{{ linea.lineaId }}").click(function(){
+								  	var $body = $(this.ie6 ? document.body : document);
+										$('.eliminaObjeto{{ linea.lineaId }}').css({
+											width:  $body.width(),
+											height:  $body.height()
+									});
+								     $(".eliminaObjeto{{ linea.lineaId }}").toggle(); 
+								  });
+								  
+								  $("#btnCloseElimina{{ linea.lineaId }}").click(function(){
+								     $(".eliminaObjeto{{ linea.lineaId }}").toggle(); 
+								  });
+								});
+								</script>
+								
+								<div class="eliminaObjeto{{ linea.lineaId }}" id="eliminaObjeto" hidden>
+									<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_deleteLineas')}}" data-validate="parsley">
+										<span>Esta seguro que desea eliminar la Linea {{ linea.lineaNumero }}</span>
+											<input type="Hidden" id="lineaId" name="lineaId" class="input-xlarge" readonly value="{{ linea.lineaId }}">
+										<button class="btn btn-primary" type="submit" >Eliminar</button>
+										<span class="btn" id="btnCloseElimina{{ linea.lineaId }}">Cancelar</span>
+								    </form>
+								</div>
+
+								<a class="btn btnDetalles" id="btnPopUpDetalles{{ linea.lineaId }}">Detalles</a>
+								<script>
+								$(document).ready(function(){
+								  $("#btnPopUpDetalles{{ linea.lineaId }}").click(function(){
+								  	var $body = $(this.ie6 ? document.body : document);
+										$('.detallesObjeto{{ linea.lineaId }}').css({
+											width:  $body.width(),
+											height:  $body.height()
+										});
+								     $(".detallesObjeto{{ linea.lineaId }}").toggle(); 
+								  });
+								  
+								  $("#btnCloseDetalles{{ linea.lineaId }}").click(function(){
+								     $(".detallesObjeto{{ linea.lineaId }}").toggle(); 
+								  });
+								});
+								</script>
+								
+								
+								<div class="detallesObjeto{{ linea.lineaId }}" id="detallesObjeto" hidden>
+									<table>
+										<tr>
+											<td>
+												<label><span>Numero:</span> {{ linea.lineaNumero }}</label>
+											</td>
+											<td>
+												<label><span>Empresa:</span> {{ linea.lineaEmpresa }}</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label><span>Plan:</span>{{ linea.lineaPlan }}</label>
+											</td>
+											<td>
+												<label><span>Destino:</span> {{ linea.lineaDestino }}</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label><span>Cargo:</span> {{ linea.lineaCargo }}</label>
+											</td>
+											<td>
+												<label><span>IMEI:</span> {{ linea.lineaIMEI }}</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label><span>Marca:</span> {{ linea.lineaMarca }}</label>
+											</td>
+											<td>
+												<label><span>Modelo:</span> {{ linea.lineaModelo }}</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label><span>Ultimo Cambio:</span> {{ linea.lineaUltimoCambio|date('d-m-y') }}</label>
+											</td>
+											<td>
+												<label><span>Voz:</span> $ {{ linea.lineaVoz }}</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label><span>SMS:</span> $ {{ linea.lineaSms }}</label>
+											</td>
+											<td>
+												<label><span>GPRS:</span> $ {{ linea.lineaGprs }}</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label><span>Datos:</span> {{ linea.lineaDatos }}</label>
+											</td>
+											<td>	
+												<label><span>BlackBerry:</span> {{ linea.lineaBlackberry }}</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label><span>Roaming:</span> {{ linea.lineaRoaming }}</label>
+											</td>
+											<td>
+												<label><span>Observaciones:</span> {{ linea.lineaObservaciones }}</label>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2">
+											<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_editLineas')}}" data-validate="parsley">
+													<input type="Hidden" id="lineaId" name="lineaId" class="input-xlarge" readonly value="{{ linea.lineaId }}">
+													<span style="float:right;" class="btn" id="btnCloseDetalles{{ linea.lineaId }}">Cerrar</span>
+												<button type="submit" class="btn" id="btnCloseDetalles{{ linea.lineaId }}">Editar</button>
+								    		</form>
+											</td>
+										</tr>
+									</table>
+
+								</div>
+						</tr>
+				{% endfor %}
+   			</tbody>
+		</table>
+		<button class="btn btn-primary" id="btnPopUpLinea">Nueva Linea</button>
+		
+		
+		
+		<div class="agregaObjeto" id="agregaObjeto" hidden>
+			<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_addLineas')}}" data-validate="parsley">
+				<h2>Ingrese los datos de la Linea</h2>
+
+				<table>
+					<tr>
+						<td>
+							<label>Numero</label>
+							<input type="text" id="lineaNumero" name="lineaNumero" class="input-xlarge">
+						</td>
+						<td>
+							<label>Empresa</label>
+					        <select type="text" name="lineaEmpresa" class="select-xlarge" data-trigger="change" data-required="true" value="Seleccionar...">
+						        	{% for empresa in empresas %}
+					   					<option value="{{ empresa.empresaNombre }}">{{ empresa.empresaNombre }}</option>
+									{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Plan</label>
+					        <input type="text" id="lineaPlan" name="lineaPlan" class="input-xlarge">
+						</td>
+						<td>
+							<label>Destino</label>
+							<input type="text" id="lineaDestino" name="lineaDestino" class="input-xlarge">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Cargo</label>
+							<input type="text" id="lineaCargo" name="lineaCargo" class="input-xlarge">
+						</td>
+						<td>
+							<label>IMEI</label>
+							<input type="text" id="lineaIMEI" name="lineaIMEI" class="input-xlarge">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Marca</label>
+							<input type="text" id="lineaMarca" name="lineaMarca" class="input-xlarge">
+						</td>
+						<td>
+							<label>Modelo</label>
+							<input type="text" id="lineaModelo" name="lineaModelo" class="input-xlarge">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Ultimo Cambio</label>
+							<input type="date" id="lineaUltimoCambio" name="lineaUltimoCambio" class="input-xlarge">
+						</td>
+						<td>
+							<label>Voz ($)</label>
+							<input type="text" id="lineaVoz" name="lineaVoz" class="input-xlarge">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>SMS ($)</label>
+							<input type="text" id="lineaSms" name="lineaSms" class="input-xlarge">
+						</td>
+						<td>
+							<label>GPRS ($)</label>
+							<input type="text" id="lineaGprs" name="lineaGprs" class="input-xlarge">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Datos</label>
+							<select type="text" name="lineaDatos" id="lineaDatos" class="select-xlarge" data-trigger="change" data-required="true" value="Seleccionar...">
+						        	{% for opcion in opciones %}
+					   					<option value="{{ opcion.opcionesSNValue }}">{{ opcion.opcionesSNValue }}</option>
+									{% endfor %}
+							</select>
+						</td>
+						<td>	
+							<label>BlackBerry</label>
+							<select type="text" name="lineaBlackberry" id="lineaBlackberry" class="select-xlarge" data-trigger="change" data-required="true" value="Seleccionar...">
+						        	{% for opcion in opciones %}
+					   					<option value="{{ opcion.opcionesSNValue }}">{{ opcion.opcionesSNValue }}</option>
+									{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Roaming</label>
+							<select type="text" name="lineaRoaming" id="lineaRoaming" class="select-xlarge" data-trigger="change" data-required="true" value="Seleccionar...">
+						        	{% for opcion in opciones %}
+					   					<option value="{{ opcion.opcionesSNValue }}">{{ opcion.opcionesSNValue }}</option>
+									{% endfor %}
+							</select>
+						</td>
+						<td>
+							<label>Observaciones</label>
+							<textarea id="lineaObservaciones" name="lineaObservaciones"></textarea>
+						</td>
+					</tr>
+				<table>
+
+				<button class="btn btn-primary" type="submit" >Agregar</button>
+				<span class="btn" id="btnCloseLineaForm">Cancelar</span>
+			</form>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$("#btnPopUpLinea").click(function(){
+				var $body = $(this.ie6 ? document.body : document);
+					$('.agregaObjeto').css({
+						width:  $body.width(),
+						height:  $body.height()
+					});
+					$(".agregaObjeto").toggle(); 
+				});
+					
+				$("#btnCloseLineaForm").click(function(){
+					$(".agregaObjeto").toggle(); 
+				});
+			});
+		</script>
+ </div> 
+    {%endblock%}

@@ -1,0 +1,19 @@
+<?php
+
+namespace Materiaweb\MateriaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ArticulosRecargos
+ */
+class ArticulosRecargos
+{
+	
+	private $ArtRecIdTabla;
+	private $ArtRecIdCompany;
+	private $ArtRecCodart;
+	private $ArtRecNroOrden;
+	private $ArtRecDetalle;
+	private $ArtRecValor;
+}

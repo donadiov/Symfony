@@ -1,0 +1,527 @@
+<?php
+
+namespace Materia\SqlBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Company
+ */
+class Company
+{
+	private $companyId;
+	private $companyClave;
+	private $companyRazonSocial;
+	private $companyNombreFantasia;
+	private $companyMail;
+	private $companyCalle;
+	private $companyCalleNro;
+	private $companyCp;
+	private $companyLocalidad;
+	private $companyProvincia;
+	private $companyPais;
+	private $companyCuit;
+	private $companyPerFiscal;
+	private $companyNiibb;
+	private $companyCondiibb;
+	private $companyActividad;
+	private $companyObservaciones;
+	private $companyNombreTitular;
+	private $companyApellidoTitular;
+	private $companyUsuarioTitular;
+	private $companyPasswordTitular;
+	private $companyActive;
+
+    /**
+     * Get companyId
+     *
+     * @return integer 
+     */
+    public function getCompanyId()
+    {
+        return $this->companyId;
+    }
+
+    /**
+     * Set companyClave
+     *
+     * @param string $companyClave
+     * @return Company
+     */
+    public function setCompanyClave($companyClave)
+    {
+        $this->companyClave = $companyClave;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyClave
+     *
+     * @return string 
+     */
+    public function getCompanyClave()
+    {
+        return $this->companyClave;
+    }
+
+    /**
+     * Set companyRazonSocial
+     *
+     * @param string $companyRazonSocial
+     * @return Company
+     */
+    public function setCompanyRazonSocial($companyRazonSocial)
+    {
+        $this->companyRazonSocial = $companyRazonSocial;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyRazonSocial
+     *
+     * @return string 
+     */
+    public function getCompanyRazonSocial()
+    {
+        return $this->companyRazonSocial;
+    }
+
+    /**
+     * Set companyNombreFantasia
+     *
+     * @param string $companyNombreFantasia
+     * @return Company
+     */
+    public function setCompanyNombreFantasia($companyNombreFantasia)
+    {
+        $this->companyNombreFantasia = $companyNombreFantasia;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyNombreFantasia
+     *
+     * @return string 
+     */
+    public function getCompanyNombreFantasia()
+    {
+        return $this->companyNombreFantasia;
+    }
+
+    /**
+     * Set companyMail
+     *
+     * @param string $companyMail
+     * @return Company
+     */
+    public function setCompanyMail($companyMail)
+    {
+        $this->companyMail = $companyMail;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyMail
+     *
+     * @return string 
+     */
+    public function getCompanyMail()
+    {
+        return $this->companyMail;
+    }
+
+    /**
+     * Set companyCalle
+     *
+     * @param string $companyCalle
+     * @return Company
+     */
+    public function setCompanyCalle($companyCalle)
+    {
+        $this->companyCalle = $companyCalle;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyCalle
+     *
+     * @return string 
+     */
+    public function getCompanyCalle()
+    {
+        return $this->companyCalle;
+    }
+
+    /**
+     * Set companyCalleNro
+     *
+     * @param integer $companyCalleNro
+     * @return Company
+     */
+    public function setCompanyCalleNro($companyCalleNro)
+    {
+        $this->companyCalleNro = $companyCalleNro;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyCalleNro
+     *
+     * @return integer 
+     */
+    public function getCompanyCalleNro()
+    {
+        return $this->companyCalleNro;
+    }
+
+    /**
+     * Set companyCp
+     *
+     * @param integer $companyCp
+     * @return Company
+     */
+    public function setCompanyCp($companyCp)
+    {
+        $this->companyCp = $companyCp;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyCp
+     *
+     * @return integer 
+     */
+    public function getCompanyCp()
+    {
+        return $this->companyCp;
+    }
+
+    /**
+     * Set companyLocalidad
+     *
+     * @param string $companyLocalidad
+     * @return Company
+     */
+    public function setCompanyLocalidad($companyLocalidad)
+    {
+        $this->companyLocalidad = $companyLocalidad;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyLocalidad
+     *
+     * @return string 
+     */
+    public function getCompanyLocalidad()
+    {
+        return $this->companyLocalidad;
+    }
+
+    /**
+     * Set companyProvincia
+     *
+     * @param string $companyProvincia
+     * @return Company
+     */
+    public function setCompanyProvincia($companyProvincia)
+    {
+        $this->companyProvincia = $companyProvincia;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyProvincia
+     *
+     * @return string 
+     */
+    public function getCompanyProvincia()
+    {
+        return $this->companyProvincia;
+    }
+
+    /**
+     * Set companyPais
+     *
+     * @param string $companyPais
+     * @return Company
+     */
+    public function setCompanyPais($companyPais)
+    {
+        $this->companyPais = $companyPais;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyPais
+     *
+     * @return string 
+     */
+    public function getCompanyPais()
+    {
+        return $this->companyPais;
+    }
+
+    /**
+     * Set companyCuit
+     *
+     * @param string $companyCuit
+     * @return Company
+     */
+    public function setCompanyCuit($companyCuit)
+    {
+        $this->companyCuit = $companyCuit;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyCuit
+     *
+     * @return string 
+     */
+    public function getCompanyCuit()
+    {
+        return $this->companyCuit;
+    }
+
+    /**
+     * Set companyPerFiscal
+     *
+     * @param string $companyPerFiscal
+     * @return Company
+     */
+    public function setCompanyPerFiscal($companyPerFiscal)
+    {
+        $this->companyPerFiscal = $companyPerFiscal;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyPerFiscal
+     *
+     * @return string 
+     */
+    public function getCompanyPerFiscal()
+    {
+        return $this->companyPerFiscal;
+    }
+
+    /**
+     * Set companyNiibb
+     *
+     * @param string $companyNiibb
+     * @return Company
+     */
+    public function setCompanyNiibb($companyNiibb)
+    {
+        $this->companyNiibb = $companyNiibb;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyNiibb
+     *
+     * @return string 
+     */
+    public function getCompanyNiibb()
+    {
+        return $this->companyNiibb;
+    }
+
+    /**
+     * Set companyCondiibb
+     *
+     * @param string $companyCondiibb
+     * @return Company
+     */
+    public function setCompanyCondiibb($companyCondiibb)
+    {
+        $this->companyCondiibb = $companyCondiibb;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyCondiibb
+     *
+     * @return string 
+     */
+    public function getCompanyCondiibb()
+    {
+        return $this->companyCondiibb;
+    }
+
+    /**
+     * Set companyActividad
+     *
+     * @param string $companyActividad
+     * @return Company
+     */
+    public function setCompanyActividad($companyActividad)
+    {
+        $this->companyActividad = $companyActividad;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyActividad
+     *
+     * @return string 
+     */
+    public function getCompanyActividad()
+    {
+        return $this->companyActividad;
+    }
+
+    /**
+     * Set companyObservaciones
+     *
+     * @param string $companyObservaciones
+     * @return Company
+     */
+    public function setCompanyObservaciones($companyObservaciones)
+    {
+        $this->companyObservaciones = $companyObservaciones;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyObservaciones
+     *
+     * @return string 
+     */
+    public function getCompanyObservaciones()
+    {
+        return $this->companyObservaciones;
+    }
+
+    /**
+     * Set companyNombreTitular
+     *
+     * @param string $companyNombreTitular
+     * @return Company
+     */
+    public function setCompanyNombreTitular($companyNombreTitular)
+    {
+        $this->companyNombreTitular = $companyNombreTitular;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyNombreTitular
+     *
+     * @return string 
+     */
+    public function getCompanyNombreTitular()
+    {
+        return $this->companyNombreTitular;
+    }
+
+    /**
+     * Set companyApellidoTitular
+     *
+     * @param string $companyApellidoTitular
+     * @return Company
+     */
+    public function setCompanyApellidoTitular($companyApellidoTitular)
+    {
+        $this->companyApellidoTitular = $companyApellidoTitular;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyApellidoTitular
+     *
+     * @return string 
+     */
+    public function getCompanyApellidoTitular()
+    {
+        return $this->companyApellidoTitular;
+    }
+
+    /**
+     * Set companyUsuarioTitular
+     *
+     * @param string $companyUsuarioTitular
+     * @return Company
+     */
+    public function setCompanyUsuarioTitular($companyUsuarioTitular)
+    {
+        $this->companyUsuarioTitular = $companyUsuarioTitular;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyUsuarioTitular
+     *
+     * @return string 
+     */
+    public function getCompanyUsuarioTitular()
+    {
+        return $this->companyUsuarioTitular;
+    }
+
+    /**
+     * Set companyPasswordTitular
+     *
+     * @param string $companyPasswordTitular
+     * @return Company
+     */
+    public function setCompanyPasswordTitular($companyPasswordTitular)
+    {
+        $this->companyPasswordTitular = $companyPasswordTitular;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyPasswordTitular
+     *
+     * @return string 
+     */
+    public function getCompanyPasswordTitular()
+    {
+        return $this->companyPasswordTitular;
+    }
+
+    /**
+     * Set companyActive
+     *
+     * @param integer $companyActive
+     * @return Company
+     */
+    public function setCompanyActive($companyActive)
+    {
+        $this->companyActive = $companyActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyActive
+     *
+     * @return integer 
+     */
+    public function getCompanyActive()
+    {
+        return $this->companyActive;
+    }
+}

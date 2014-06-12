@@ -1,0 +1,14 @@
+#src/LineasTelefonicas/Policia/ERBundle/Resources/config/doctrine/Empresas.orm.yml
+LineasTelefonicas\Policia\ERBundle\Entity\Empresas:
+    type: entity
+    table: Empresas
+    id:
+        empresaId:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        empresaNombre:
+            type: string
+            length: 30 
+            nullable: false
+            column: empresaNombre

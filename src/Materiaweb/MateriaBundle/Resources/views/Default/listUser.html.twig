@@ -1,0 +1,88 @@
+{%extends "MateriawebMateriaBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+{%block container %}
+<div class="container">
+
+<h2>Usuarios</h2>
+
+		<table>
+   			<caption>Lista de Usuarios</caption>
+   			<thead>
+		      <tr>
+		         <th>ID</th>
+		         <th>Nombre y Apellido</th>
+		         <th>Nombre de Usuario</th>
+		         <th>ID de Empresa</th>
+		         <th>Empresa</th>
+		         <th>Mail</th>
+		         <th>Rol</th>
+		         <th>Accion</th>
+		      </tr>
+   			</thead>
+   			<tbody>
+		    	{% for user in users %}
+      			<tr class="{{ cycle(['even', 'odd'], loop.index0) }}">
+      				<td>{{ user.userId }}</td>
+      				<td>{{ user.firstName }} {{ user.lastName }}</td>
+      				<td>{{ user.userName }}</td>
+      				<td>{{ user.userCompanyId }}</td>
+      				<td>
+      				{% for company in companies %}	
+      					{% if user.userCompanyId == company.companyId %}
+      						{{ company.companyNombreFantasia }}
+      					{% endif %}
+      				{% endfor %}
+      				</td>
+      				<td>{{ user.userMail }}</td>
+      				<td>{{ user.userRol }}</td>
+      				<td>
+      				{% if user.userRol == 'SUPER_ADMIN' %}
+      					<a href="{{path('materiaweb_materia_admin_editUser', {'userId': user.userId})}}">Editar</a>
+					{% else %}      					
+      					<a href="{{path('materiaweb_materia_editCompanyUser', {'userId': user.userId})}}">Editar</a>
+      				{% endif %}	
+						{% if user.userRol != 'TITULAR' %}
+						 - <button id="btnPopUp{{ user.userId }}">Eliminar</button>
+						{% endif %}
+						
+						<script>
+						$(document).ready(function(){
+						  $("#btnPopUp{{ user.userId }}").click(function(){
+						     $(".eliminaObjeto{{ user.userId }}").toggle(); 
+						  });
+						  
+						  $("#btnClose{{ user.userId }}").click(function(){
+						     $(".eliminaObjeto{{ user.userId }}").toggle(); 
+						  });
+						});
+						</script>
+						
+						<div class="eliminaObjeto{{ user.userId }}" id="eliminaObjeto" hidden>
+
+							<form id="form" class="well" method="POST" action="{{path('materia_sql_deleteCompanyUser')}}" data-validate="parsley">
+								<span>Esta seguro que desea eliminar el Usuario {{ user.firstName }} {{ user.lastName }}</span>
+								<span>que es actual miembro de la empresa 
+									{% for company in companies %}	
+										{% if user.userCompanyId == company.companyId %}
+											{{ company.companyNombreFantasia }}
+										{% endif %}
+									{% endfor %}
+									</span>
+								<input type="Hidden" id="userId" name="userId" class="input-xlarge" readonly value="{{ user.userId }}">			
+								<button class="btn btn-primary" type="submit" >Eliminar</button>
+								<span class="btn" id="btnClose{{ user.userId }}">Cancelar</span>
+						    </form>
+
+						</div>
+						
+      				</td>
+				</tr>
+				{% endfor %}
+   			</tbody>
+		</table>
+		<a href="{{ path('materiaweb_materia_signup') }}">Nuevo Usuario</a>
+
+ </div> 
+    {%endblock%}

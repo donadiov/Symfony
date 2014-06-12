@@ -1,0 +1,14 @@
+#src/LineasTelefonicas/Policia/ERBundle/Resources/config/doctrine/Destino.orm.yml
+LineasTelefonicas\Policia\ERBundle\Entity\Destino:
+    type: entity
+    table: Destino
+    id:
+        destinoId:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        destinoNombre:
+            type: string
+            length: 30 
+            nullable: false
+            column: DestinoNombre

@@ -1,0 +1,92 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+{%block container %}
+<div class="container">
+
+<h2>Destinos disponibles</h2>
+
+		<table>
+			<thead>
+		      <tr>
+		         <th colspan="6" style="text-align:center;" >Destinos</th>
+		      </tr>
+   			</thead>
+			
+			{% for row in destinos|batch(6) %}
+			  <tr class="{{ cycle(['even', 'odd'], loop.index0) }}">
+			  {% for destino in row %}
+			    <td><a href="#" id="btnPopUpOpciones{{ destino.destinoId }}">{{ destino.destinoNombre }}</a>
+			    
+			    
+			    <script>
+					$(document).ready(function(){
+					$("#btnPopUpOpciones{{ destino.destinoId }}").click(function(){
+						var $body = $(this.ie6 ? document.body : document);
+							$('.editaObjeto{{ destino.destinoId }}').css({
+								width:  $body.width(),
+								height:  $body.height()
+							});
+						$(".editaObjeto{{ destino.destinoId }}").toggle(); 
+					});
+						$("#btnCierraOpciones{{ destino.destinoId }}").click(function(){
+						$(".editaObjeto{{ destino.destinoId }}").toggle(); 
+					});
+				});
+				</script>
+					<div class="editaObjeto{{ destino.destinoId }}" id="editaObjeto" hidden>
+						<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_saveDestinos')}}" data-validate="parsley">
+								<input type="hidden" id="destinoId" name="destinoId" class="input-xlarge" readonly value="{{ destino.destinoId }}">
+								<input type="text" id="destinoNombre" name="destinoNombre" class="input-xlarge" value="{{ destino.destinoNombre }}">
+								<button class="btn btn-primary" type="submit" >Guardar</button>
+								<span class="btn" id="btnCierraOpciones{{ destino.destinoId }}">Cancelar</span>
+						</form>
+						<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_deleteDestinos')}}" data-validate="parsley">
+								<input type="hidden" id="destinoId" name="destinoId" class="input-xlarge" readonly value="{{ destino.destinoId }}">
+								<label>Desea eliminar este Destino? <button class="btn btn-primary" type="submit" >Eliminar</button></label>
+								
+						</form>
+					</div>
+			    
+			    
+			    </td>
+			    
+			    
+			    
+			  {% endfor %}
+			  </tr>
+			{% endfor %}
+		</table>
+		
+		<button class="btn btn-primary" id="btnPopUpDestino">Nuevo Destino</button>
+		
+		<script>
+			$(document).ready(function(){
+				$("#btnPopUpDestino").click(function(){
+					var $body = $(this.ie6 ? document.body : document);
+						$('.agregaObjeto').css({
+							width:  $body.width(),
+							height:  $body.height()
+						});
+					$(".agregaObjeto").toggle(); 
+				});
+					$("#btnCloseAgrega").click(function(){
+					$(".agregaObjeto").toggle(); 
+				});
+			});
+		</script>
+	
+	<div class="agregaObjeto" id="agregaObjeto" hidden>
+		<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_listDestinos')}}" data-validate="parsley">
+			<label>Nombre de destino: 
+				<input type="text" id="destinoNombre" name="destinoNombre" class="input-xlarge" >
+			</label>
+			
+			<button class="btn btn-primary" type="submit" >Agregar</button>
+			<span class="btn" id="btnCloseAgrega">Cancelar</span>
+		</form>
+	</div>
+		
+ </div> 
+    {%endblock%}

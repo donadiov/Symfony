@@ -1,0 +1,149 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+{%block container %}
+<div class="container">
+
+<h2>Historico Lineas Telefonicas</h2>
+
+<script>
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#lineas tfoot th').each( function () {
+        var title = $('#lineas thead th').eq( $(this).index() ).text();
+        $(this).html( '<input type="text" placeholder="'+title+'" />' );
+    } );
+ 
+    // DataTable
+    var table = $('#lineas').DataTable();
+ 
+    // Apply the filter
+    table.columns().eq( 0 ).each( function ( colIdx ) {
+        $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+            table
+                .column( colIdx )
+                .search( this.value )
+                .draw();
+        } );
+    } );
+} );
+</script>
+
+	<table id="lineas" class="display" cellspacing="0" width="100%">
+   		<caption>Lista del historico de Lineas Telefonicas</caption>
+			<thead>
+		      	<tr>
+		         	<th>Numero</th>
+		         	<th>Empresa</th>
+		         	<th>Plan</th>
+		        	<th>Destino</th>
+		         	<th>Cargo</th>
+		         	<th>Ult. Cambio</th>
+		         	<th>Usuario</th>
+		        	<th>Accion</th>
+		        	<th>Detalles</th>
+		    	</tr>
+	   		</thead>
+	   		<tfoot>
+	            <tr>
+		         	<th>Numero</th>
+		         	<th>Empresa</th>
+		         	<th>Plan</th>
+		        	<th>Destino</th>
+		         	<th>Cargo</th>
+		         	<th>Ult. Cambio</th>
+		         	<th>Usuario</th>
+		        	<th>Accion</th>
+		        	<th>Detalles</th>
+		    	</tr>
+        </tfoot>
+   			<tbody>
+		    	{% for historico in historicos %}
+		      			<tr class="{{ cycle(['even', 'odd'], loop.index0) }} visible"  style="display: table-row;">
+		      				<td>{{ historico.lineaHistoricoNumero }}</td>
+		      				<td>{{ historico.lineaHistoricoEmpresa }}</td>
+		      				<td>{{ historico.lineaHistoricoPlan }}</td>
+		      				<td>{{ historico.lineaHistoricoDestino }}</td>
+		      				<td>{{ historico.lineaHistoricoCargo }}</td>
+		      				<td>{{ historico.lineaHistoricoUltimoCambio|date('d-m-y') }}</td>
+		      				<td>{{ historico.lineaHistoricoUsuario }}</td>
+		      				<td>{{ historico.lineaHistoricoAccion }}</td>
+		      				<td>
+			      				<table>
+				      				<tr>
+				      					<a class="btn btnDetalles" id="btnPopUpDetalles{{ historico.HistoricoId }}"><img style="width:20px;" src="/bundles/LineasTelefonicasPoliciaER/images/detalles.png"/></a>
+				      				</tr>
+			      				</table>
+		      				</td>
+						</tr>
+				{% endfor %}
+   			</tbody>
+		</table>
+		
+								{% for historico in historicos %}
+								<div class="detallesObjeto{{ historico.HistoricoId }}" id="detallesObjeto" hidden>
+									<div>
+										<section class="detalles1">
+												<label><span>Numero:</span> {{ historico.lineaHistoricoNumero }}</label>
+
+												<label><span>Empresa:</span> {{ historico.lineaHistoricoEmpresa }}</label>
+
+												<label><span>Plan:</span>{{ historico.lineaHistoricoPlan }}</label>
+
+												<label><span>Destino:</span> {{ historico.lineaHistoricoDestino }}</label>
+
+												<label><span>Cargo:</span> {{ historico.lineaHistoricoCargo }}</label>
+
+												<label><span>IMEI:</span> {{ historico.lineaHistoricoIMEI }}</label>
+
+												<label><span>Marca:</span> {{ historico.lineaHistoricoMarca }}</label>
+
+												<label><span>Modelo:</span> {{ historico.lineaHistoricoModelo }}</label>
+
+												<label><span>Ultimo Cambio:</span> {{ historico.lineaHistoricoUltimoCambio|date('d-m-y') }}</label>
+										</section>
+										<section class="detalles2">
+												<label><span>Voz:</span> $ {{ historico.lineaHistoricoVoz }}</label>
+
+												<label><span>SMS:</span> $ {{ historico.lineaHistoricoSms }}</label>
+
+												<label><span>GPRS:</span> $ {{ historico.lineaHistoricoGprs }}</label>
+
+												<label><span>Datos:</span> {{ historico.lineaHistoricoDatos }}</label>
+	
+												<label><span>BlackBerry:</span> {{ historico.lineaHistoricoBlackberry }}</label>
+
+												<label><span>Roaming:</span> {{ historico.lineaHistoricoRoaming }}</label>
+
+												<label><span>Observaciones:</span> {{ historico.lineaHistoricoObservaciones }}</label>
+
+												<label><span>Usuario:</span> {{ historico.lineaHistoricoUsuario }}</label>
+
+												<label><span>Accion:</span> {{ historico.lineaHistoricoAccion }}</label>
+										</section>
+										<span class="btn" id="btnCloseDetalles{{ historico.HistoricoId }}" style="position: relative;margin-left: 80%;">Cancelar</span>
+									</div>
+									
+								</div>
+							</div>
+																<script>
+								$(document).ready(function(){
+								  $("#btnPopUpDetalles{{ historico.HistoricoId }}").click(function(){
+								  	var $body = $(this.ie6 ? document.body : document);
+										$('.detallesObjeto{{ historico.HistoricoId }}').css({
+											width:  $body.width(),
+											height:  $body.height()
+										});
+								     $(".detallesObjeto{{ historico.HistoricoId }}").toggle(); 
+								  });
+								  
+								  $("#btnCloseDetalles{{ historico.HistoricoId }}").click(function(){
+								     $(".detallesObjeto{{ historico.HistoricoId }}").toggle(); 
+								  });
+								});
+								</script>
+								{% endfor %}
+
+ </div> 
+    {%endblock%}

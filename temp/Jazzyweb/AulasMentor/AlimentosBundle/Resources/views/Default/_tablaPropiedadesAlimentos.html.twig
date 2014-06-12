@@ -1,0 +1,25 @@
+{% block stylesheets %}
+ <link href="{{ asset('bundles/jazzywebaulasmentoralimentos/css/tablaListar.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% if mensaje is defined %}
+<b><span style="color: red;">{{ mensaje }}</span></b>
+{% endif %}
+
+ <table id="lista">
+      <tr>
+          <th>Color</th>
+          <th>Peso (g)</th>
+          <th>Familia</th>
+          <th>Foto</th>
+      </tr>
+      {% for alimento in alimentos %}
+      <tr>
+          <td>{{ alimentoProp.color }}</td>
+          <td>{{ alimentoProp.peso }}</td>
+          <td>{{ alimentoProp.familia }}</td>
+          <td>{{ alimentoProp.foto }}</td>          								
+      </tr>
+      {% endfor %}
+
+  </table>

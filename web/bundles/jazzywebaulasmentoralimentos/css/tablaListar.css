@@ -1,0 +1,23 @@
+table#lista{
+	background-color: #e6e6e6;
+	margin: auto;
+	margin-top: 20px;
+	width: 960px;
+}
+
+table#lista tr:nth-child(odd)
+{
+background:#e6e6e6;
+}
+table#lista tr:nth-child(even)
+{
+background:#ffffff;
+}
+
+table#lista tr:nth-child(1){
+	background-color: #999;
+}
+
+table#lista td{
+	border-bottom: 1px solid #666;
+}

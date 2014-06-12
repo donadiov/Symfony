@@ -1,0 +1,40 @@
+#src/LineasTelefonicas/Policia/ERBundle/Resources/config/doctrine/Usuarios.orm.yml
+LineasTelefonicas\Policia\ERBundle\Entity\Usuarios:
+    type: entity
+    table: Usuarios
+    id:
+        usuarioId:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        usuarioUsername:
+            type: string
+            length: 30 
+            nullable: false
+            unique: true
+            column: usuarioUsername
+        usuarioNombre:
+            type: string
+            length: 30 
+            nullable: false
+            column: usuarioNombre
+        usuarioApellido:
+            type: string
+            length: 30 
+            nullable: false
+            column: usuarioApellido
+        usuarioPass:
+            type: string
+            length: 90 
+            nullable: false
+            column: usuarioPass
+        usuarioMail:
+            type: string
+            length: 50
+            nullable: false
+            column: usuarioMail
+        usuarioRol:
+            type: string
+            length: 15 
+            nullable: false
+            column: usuarioRol

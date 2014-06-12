@@ -1,0 +1,58 @@
+#DEFAULT
+materiaweb_materia_homepage:
+    pattern:  /
+    defaults: { _controller: MateriawebMateriaBundle:Default:index }
+
+materiaweb_materia_new_company:
+    pattern:  /new-company
+    defaults: { _controller: MateriawebMateriaBundle:Default:newCompany }
+
+materiaweb_materia_logout:
+    pattern:  /logout
+    defaults: { _controller: MateriawebMateriaBundle:Default:logout }
+    
+materiaweb_materia_prueba:
+    pattern:  /prueba
+    defaults: { _controller: MateriawebMateriaBundle:Default:prueba }
+
+#USER    
+materiaweb_materia_signup:
+    pattern:  /signup
+    defaults: { _controller: MateriawebMateriaBundle:User:signup }
+
+materiaweb_materia_editMyCompany:
+    pattern:  /edit-company
+    defaults: { _controller: MateriawebMateriaBundle:User:editMyCompany }
+        
+materiaweb_materia_listCompanyUser:
+    pattern:  /listCompanyUser
+    defaults: { _controller: MateriawebMateriaBundle:User:listCompanyUser }
+    
+materiaweb_materia_editCompanyUser:
+    pattern:  /editCompanyUser/{userId}
+    defaults: { _controller: MateriawebMateriaBundle:User:editCompanyUser }
+    
+materiaweb_materia_deleteCompanyUser:
+    pattern:  /deleteCompanyUser
+    defaults: { _controller: MateriawebMateriaBundle:User:deleteCompanyUser }
+    
+#ADMIN
+materiaweb_materia_admin_listCompany:
+    pattern:  /listCompany
+    defaults: { _controller: MateriawebMateriaBundle:Admin:listCompany }
+    
+materiaweb_materia_admin_editCompany:
+    pattern:  /edit-company/{companyId}
+    defaults: { _controller: MateriawebMateriaBundle:Admin:editCompany }
+    
+materiaweb_materia_admin_listUser:
+    pattern:  /listUser
+    defaults: { _controller: MateriawebMateriaBundle:Admin:listUser }
+    
+materiaweb_materia_admin_editUser:
+    pattern:  /edit-user/{userId}
+    defaults: { _controller: MateriawebMateriaBundle:Admin:editUser }
+    
+materiaweb_materia_admin_deleteUser:
+    pattern:  /deleteUser
+    defaults: { _controller: MateriawebMateriaBundle:Admin:deleteUser }

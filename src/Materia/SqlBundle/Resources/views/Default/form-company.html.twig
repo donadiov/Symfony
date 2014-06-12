@@ -1,0 +1,124 @@
+{%extends "MateriaSqlBundle:Default:index.html.twig"%}
+{%block container %}
+<link href="{{asset('bundles/materiasql/css/login.css')}}" rel="stylesheet">
+<div class="container" >
+
+    <form id="form" class="well" method="POST" action="{{path('materia_sql_new_company')}}" data-validate="parsley">
+
+        <h2>Cree su empresa</h2>
+<table>
+	<tr>
+	<td colspan=4>
+		<legend>Datos de la Empresa</legend>
+	</td>	
+	</tr>
+	<tr>
+		<td>			      
+	        <label>Razon Social</label>
+	        <input type="text" id="companyRazonSocial" name="companyRazonSocial" class="input-xlarge" data-trigger="change" data-required="true">
+	    </td>
+	    <td>    
+	        <label>Nombre de Fantasia</label>
+	        <input type="text" id="companyNombreFantasia" name="companyNombreFantasia" class="input-xlarge" data-trigger="change" data-required="true">
+	    </td>
+	    <td>
+	        <label>Clave de empresa</label>
+	        <input type="text" id="companyClave" name="companyClave" class="input-xlarge" data-trigger="change" data-required="true" >
+			<small style="display:none;">La clave de empresa se compnoe de 10 caracteres consecutivos. </small>
+	    </td>
+	    <td>
+	        <label>Direccion (calle)</label>
+	        <input type="text" id="companyCalle" name="companyCalle" class="input-xlarge" data-trigger="change" data-required="true">
+	    </td>
+	</tr>
+	<tr>
+	    <td>
+	        <label>Direccoin (Numero)</label>
+	        <input type="text" id="companyCalleNro" name="companyCalleNro" class="input-xlarge" data-trigger="change" data-required="true">
+	    </td>
+	    <td>	        
+	        <label>Ciudad</label>
+	        <input type="text" id="companyLocalidad" name="companyLocalidad" class="input-xlarge" data-trigger="change" data-required="true">
+	    </td>
+	    <td>
+			<label>Provincia</label>
+	        <input type="text" id="companyProvincia" name="companyProvincia" class="input-xlarge" data-trigger="change" data-required="true">
+	    </td>
+	    <td>
+	        <label>Pais</label>
+	        <input type="text" id="companyPais" name="companyPais" class="input-xlarge" data-trigger="change" data-required="true">
+	    </td>
+	</tr>
+	<tr>
+	   <td>
+	        <label>Codigo Postal</label>
+	        <input type="text" id="companyCp" name="companyCp" class="input-xlarge" data-trigger="change" data-required="true">
+	   </td>
+	   <td>     
+	        <label>Cuit</label>
+	        <input type="text" id="companyCuit" name="companyCuit" class="input-xlarge" data-trigger="change" data-required="true">
+	   </td>
+	   <td>	        
+	        <label>Perfil Fiscal</label>
+	        <input type="text" id="companyPerFiscal" name="companyPerFiscal" class="input-xlarge" data-trigger="change" data-required="true">
+	   </td>
+	   <td>	        
+	        <label>Condicion Ingresos brutos</label>
+	        <input type="text" id="companyCondiibb" name="companyCondiibb" class="input-xlarge" data-trigger="change" data-required="true">
+	   </td>
+	</tr>
+	<tr>
+	   <td>	        
+	        <label>Numero Ingresos Brutos</label>
+	        <input type="text" id="companyNiibb" name="companyNiibb" class="input-xlarge" data-trigger="change" data-required="true">
+		</td>
+		<td>
+	        <label>Actividad</label>
+	        <input type="text" id="companyActividad" name="companyActividad" class="input-xlarge" data-trigger="change" data-required="true">
+		</td>
+		<td colspan="2">	       		
+	        <label>Observaciones</label>
+	        <textarea type="text" id="companyObservaciones" name="companyObservaciones" class="input-xlarge" data-trigger="change"></textarea>
+		</td>
+	</tr>
+	<tr>
+	<td colspan=4>
+		<legend>Datos de Usuario Titular</legend>	
+	</td>
+	</tr>
+	<tr>
+		<td>
+	        <label>Nombre del Titular</label>
+	        <input type="text" id="companyNombretitular" name="companyNombretitular" class="input-xlarge" data-trigger="change" data-required="true">
+		</td>
+		<td>
+	        <label>Apellido del Titular</label>
+	        <input type="text" id="companyApellidoTitular" name="companyApellidoTitular" class="input-xlarge" data-trigger="change" data-required="true">
+		</td>
+		<td>
+	        <label>Mail del Titular</label>
+	        <input type="text" id="companyMail" name="companyMail" class="input-xlarge" data-trigger="change" data-required="true" data-type="email">
+		</td>
+	</tr>
+	<tr>
+		<td>
+	        <label>Usuario Titular</label>
+	        <input type="text" id="companyUsuarioTitular" name="companyUsuarioTitular" class="input-xlarge" data-trigger="change" data-required="true">
+		</td>
+		<td>	        
+	        <label>Password</label>
+	        <input type="password" id="companyPasswordTitular" name="companyPasswordTitular" class="input-xlarge" data-trigger="change" data-required="true">
+	    </td>
+		<td>   
+	        <div>
+	         <button class="btn btn-primary" type="submit" >crear Empresa</button>
+	        </div>
+		</td>
+	</tr>
+</table>
+
+
+    </form>
+</div>
+
+ {%endblock%}

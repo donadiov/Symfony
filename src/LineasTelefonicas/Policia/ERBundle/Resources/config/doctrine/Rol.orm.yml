@@ -1,0 +1,14 @@
+#src/LineasTelefonicas/Policia/ERBundle/Resources/config/doctrine/Rol.orm.yml
+LineasTelefonicas\Policia\ERBundle\Entity\Rol:
+    type: entity
+    table: Rol
+    id:
+        rolId:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        rolNombre:
+            type: string
+            length: 30 
+            nullable: false
+            column: rolNombre

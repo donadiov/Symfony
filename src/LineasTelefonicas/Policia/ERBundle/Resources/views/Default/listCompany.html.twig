@@ -1,0 +1,80 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+{%block container %}
+<div class="container">
+
+<h2>Empresas</h2>
+
+		<table>
+   			<caption>Lista de Empresas Prestadoras de servicio</caption>
+   			<thead>
+		      <tr>
+		         <th>Nombre de Empresa</th>
+		         <th>Accion</th>
+		      </tr>
+   			</thead>
+   			<tbody>
+		    	{% for empresa in empresas %}
+		      			<tr class="{{ cycle(['even', 'odd'], loop.index0) }}">
+		      				<td>{{ empresa.empresaNombre}}</td>
+		      				<td>
+								<a style="display: block;" class="btn btneliminar" id="btnPopUp{{ empresa.empresaId }}">Eliminar</a>
+								<script>
+								$(document).ready(function(){
+								  $("#btnPopUp{{ empresa.empresaId }}").click(function(){
+								     $(".eliminaObjeto{{ empresa.empresaId }}").toggle(); 
+								  });
+								  
+								  $("#btnClose{{ empresa.empresaId }}").click(function(){
+								     $(".eliminaObjeto{{ empresa.empresaId }}").toggle(); 
+								  });
+								});
+								</script>
+								
+								<div class="eliminaObjeto{{ empresa.empresaId }}" id="eliminaObjeto" hidden>
+									<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_deleteCompany')}}" data-validate="parsley">
+										<span>Esta seguro que desea eliminar la Empresa {{ empresa.empresaNombre }}</span>
+											<input type="Hidden" id="empresaId" name="empresaId" class="input-xlarge" readonly value="{{ empresa.empresaId }}">			
+										<button class="btn btn-primary" type="submit" >Eliminar</button>
+										<span class="btn" id="btnClose{{ empresa.empresaId }}">Cancelar</span>
+								    </form>
+		
+								</div>
+								
+		      				</td>
+						</tr>
+				{% endfor %}
+   			</tbody>
+		</table>
+		<button class="btn btn-primary" id="btnPopUpEmpresa">Nueva Empresa</button>
+		
+		
+		
+		<div class="agregaObjeto" id="agregaObjeto" hidden>
+			<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_listCompany')}}" data-validate="parsley">
+				<span>Ingrese el nombre de la Empresa</span>
+				<input type="text" id="empresaNombre" name="empresaNombre" class="input-xlarge">			
+				<button class="btn btn-primary" type="submit" >Agregar</button>
+				<span class="btn" id="btnCloseEmpresaForm">Cancelar</span>
+			</form>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$("#btnPopUpEmpresa").click(function(){
+				var $body = $(this.ie6 ? document.body : document);
+				$('.agregaObjeto').css({
+					width:  $body.width(),
+					height:  $body.height()
+				});
+					$(".agregaObjeto").toggle(); 
+				});
+					
+				$("#btnCloseEmpresaForm").click(function(){
+					$(".agregaObjeto").toggle(); 
+				});
+			});
+		</script>
+ </div> 
+    {%endblock%}

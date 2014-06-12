@@ -1,0 +1,14 @@
+#src/LineasTelefonicas/Policia/ERBundle/Resources/config/doctrine/Rol.orm.yml
+LineasTelefonicas\Policia\ERBundle\Entity\OpcionesSN:
+    type: entity
+    table: OpcionesSNId
+    id:
+        opcionesSNId:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        opcionesSNValue:
+            type: string
+            length: 2
+            nullable: false
+            column: opcionesSNValue

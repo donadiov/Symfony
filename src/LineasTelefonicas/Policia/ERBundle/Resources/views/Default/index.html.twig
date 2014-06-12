@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Lineas Telefonicas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link href="{{asset('bundles/LineasTelefonicasPoliciaER/css/bootstrap.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/materLineasTelefonicasPoliciaERiasql/css/bootstrap-responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/LineasTelefonicasPoliciaER/css/parsley/parsley.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/LineasTelefonicasPoliciaER/css/style.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/LineasTelefonicasPoliciaER/css/menu.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/LineasTelefonicasPoliciaER/css/jquery.dataTables.css')}}" rel="stylesheet">
+        
+        <script src="{{asset('bundles/LineasTelefonicasPoliciaER/js/jquery.js')}}"></script>
+		<script src="{{asset('bundles/LineasTelefonicasPoliciaER/js/bootstrap.js')}}"></script>
+		<script src="{{asset('bundles/LineasTelefonicasPoliciaER/js/parsley/parsley.min.js')}}"></script>
+		<script src="{{asset('bundles/LineasTelefonicasPoliciaER/js/parsley/parsley-standalone.min.js')}}"></script>
+		<script src="{{asset('bundles/LineasTelefonicasPoliciaER/js/parsley/parsley.extend.min.js')}}"></script>
+		<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="{{asset('bundles/LineasTelefonicasPoliciaER/js/jquery.dataTables.js')}}"></script>
+		
+
+		
+		<link rel="shortcut icon" href="/bundles/LineasTelefonicasPoliciaER/images/icono.ico" type="image/vnd.microsoft.icon">
+	</head>
+
+<script>
+$(document).click(function() {
+	$("#mensaje").fadeOut("slow");
+});
+</script>
+
+	<body>
+			
+				{% if login is defined %}
+					<nav>
+						{% if login.rol == "SUPER_ADMIN" or login.rol == "ADMIN" %}
+				    		<ul id="nav">
+								<li><a href="{{path('lineas_telefonicas_policia_er_homepage')}}">Inicio</a></li>
+								<li><a href="#s1">Administracion</a>
+		                    		<span id="s1"></span>
+				                    <ul class="subs">
+				                      {% if login.rol == "SUPER_ADMIN" %}
+				                        <li><a href="{{path('lineas_telefonicas_policia_er_listUser')}}">Usuarios</a></li>
+				                      {% endif %}
+				                        <li><a href="{{path('lineas_telefonicas_policia_er_listCompany')}}">Empresas</a></li>
+				                        <li><a href="{{path('lineas_telefonicas_policia_er_listDestinos')}}">Destinos</a></li>
+				                     </ul>
+		                		</li>
+		                		<li><a href="#s1">Lineas</a>
+		                    		<span id="s1"></span>
+				                    <ul class="subs">
+				                        <li><a href="{{path('lineas_telefonicas_policia_er_listLineas')}}">Lineas</a></li>
+				                        <li><a href="{{path('lineas_telefonicas_policia_er_lineasHistory')}}">Historico</a></li>
+				                     </ul>
+		                		</li>
+	                			<li><a href="{{path('lineas_telefonicas_policia_er_logout')}}" >Logout</a></li>
+	                		
+						{% elseif login.rol == "USUARIO" %}
+							<ul id="nav">
+								<li><a href="{{path('lineas_telefonicas_policia_er_homepage')}}">Inicio</a></li>
+								<li><a style="float:right;" href="{{path('lineas_telefonicas_policia_er_logout')}}" >Logout</a></li>
+							
+					{% endif %}
+						<img id="logo" src="/bundles/LineasTelefonicasPoliciaER/images/icono.gif"/>
+						</ul>
+					<a id="volver" href="javascript:history.back()"><button class="btn btn-primary">Volver</button></a>
+				</nav>
+			{% endif %}
+			
+		{% if mensaje is defined %}
+			<section id="mensaje"><span>{{ mensaje }}</span></section>
+		{% endif %}
+		
+		{%block container %}
+		{%endblock%}
+
+		
+		{%block javascripts %}
+		{%endblock%}
+	
+    </body>
+</html>
+
+

@@ -1,0 +1,35 @@
+{% block stylesheets %}
+ <link href="{{ asset('bundles/jazzywebaulasmentoralimentos/css/tablaListar.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% if mensaje is defined %}
+<b><span style="color: red;">{{ mensaje }}</span></b>
+{% endif %}
+
+ <table id="lista">
+      <tr>
+          <th>ID Alimento</th>
+          <th>Alimento (por 100g)</th>
+          <th>Energía (Kcal)</th>
+          <th>Grasa (g)</th>
+          <th>Fibra</th>
+          <th>Hidrato de Carb.</th>
+          <th>Proteina</th>
+          <th>Accion</th>
+      </tr>
+      {% for alimento in alimentos %}
+      <tr>
+          <td>{{ alimento.id }}</td>
+          <td>{{ alimento.nombre }}</td>
+          <td>{{ alimento.energia }}</td>
+          <td>{{ alimento.grasatotal }}</td>
+          <td>{{ alimento.fibra }}</td>
+          <td>{{ alimento.hidratocarbono }}</td>
+          <td>{{ alimento.proteina }}</td>
+          <td style="text-align:center"><a href="{{ path('JazzywebAulasMentorAlimentosBundle_modificar', {'id': alimento.id})}}">Editar</a>  
+          								<a href="{{ path('JazzywebAulasMentorAlimentosBundle_eliminar', {'id': alimento.id})}}">Eliminar</a>
+          								
+      </tr>
+      {% endfor %}
+
+  </table>

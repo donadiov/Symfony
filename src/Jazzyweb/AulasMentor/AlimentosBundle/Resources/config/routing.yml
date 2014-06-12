@@ -1,0 +1,35 @@
+JazzywebAulasMentorAlimentosBundle_homepage:
+ pattern:  /
+ defaults: { _controller: JazzywebAulasMentorAlimentosBundle:Default:index }
+ 
+JazzywebAulasMentorAlimentosBundle_listar:
+  pattern:  /listar
+  defaults: { _controller: JazzywebAulasMentorAlimentosBundle:Default:listar }
+
+JazzywebAulasMentorAlimentosBundle_insertar:
+  pattern:  /insertar
+  defaults: { _controller: JazzywebAulasMentorAlimentosBundle:Default:insertar }
+
+JazzywebAulasMentorAlimentosBundle_buscar:
+  pattern:  /buscar
+  defaults: { _controller: JazzywebAulasMentorAlimentosBundle:Default:buscarPorNombre }
+
+JazzywebAulasMentorAlimentosBundle_ver:
+  pattern:  /ver/{id}
+  defaults: { _controller: JazzywebAulasMentorAlimentosBundle:Default:ver }
+  
+JazzywebAulasMentorAlimentosBundle_modificar:
+  pattern:  /modificar/{id}
+  defaults: { _controller: JazzywebAulasMentorAlimentosBundle:Default:modificar }
+  
+JazzywebAulasMentorAlimentosBundle_modificado:
+  pattern:  /modificado
+  defaults: { _controller: JazzywebAulasMentorAlimentosBundle:Default:modificado }
+  
+JazzywebAulasMentorAlimentosBundle_eliminar:
+  pattern:  /eliminar/{id}
+  defaults: { _controller: JazzywebAulasMentorAlimentosBundle:Default:eliminar }
+  
+JazzywebAulasMentorAlimentosBundle_elimina:
+  pattern:  /eliminado
+  defaults: { _controller: JazzywebAulasMentorAlimentosBundle:Default:elimina }

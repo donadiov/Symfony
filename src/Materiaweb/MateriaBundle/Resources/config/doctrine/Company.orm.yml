@@ -1,0 +1,118 @@
+#src/Materiaweb/MateriaBundle/Resources/config/doctrine/Company.orm.yml
+Materiaweb\MateriaBundle\Entity\Company:
+    type: entity
+    table: Company
+    id:
+        companyId:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        companyClave:
+          type: string
+          length: 10 
+          nullable: false
+          column: companyClave
+          unique: true
+        companyRazonSocial:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyRazonSocial
+          unique: true
+        companyNombreFantasia:
+          type: string
+          length: 40 
+          nullable: false
+          column: companyNombrefantasia
+          unique: true
+        companyMail:
+          type: string
+          length: 50 
+          nullable: false
+          column: companyMail
+        companyCalle:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyCalle
+        companyCalleNro:
+          type: integer
+          length: 6 
+          nullable: false
+          column: companyCalleNro
+        companyCp:
+          type: integer
+          length: 6
+          nullable: false
+          column: companyCp
+        companyLocalidad:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyLocalidad
+        companyProvincia:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyProvincia
+        companyPais:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyPais
+        companyCuit:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyCuit
+          unique: true
+        companyPerFiscal:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyPerFiscal
+        companyNiibb:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyNiibb
+        companyCondiibb:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyCondiibb
+        companyActividad:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyActividad
+        companyObservaciones:
+          type: string
+          length: 255 
+          nullable: true
+          column: companyObservaciones
+        companyNombreTitular:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyNombreTitular
+        companyApellidoTitular:
+          type: string
+          length: 30 
+          nullable: false
+          column: companyApellidoTitular
+        companyUsuarioTitular:
+            type: string
+            length: 30 
+            nullable: false
+            column: companyUsuarioTitular
+        companyPasswordTitular:
+          type: string
+          length: 90 
+          nullable: false
+          column: companyPasswordTitular
+        companyActive:
+          type: integer
+          length: 1
+          nullable: false
+          column: companyActive

@@ -1,0 +1,153 @@
+TABLA ARTICULOS (Cabecera) -
+
+CREATE TABLE [dbo].[Articulos] 
+	[CODART] [int] 									Código Interno UNICO (Key)
+	[CODARTALTERNATIVO] [varchar] (100) 			Código Alternativo UNICO (Key)
+	[CATEGORIA] [int] 								0 por ahora (*)
+	[CODIGOFAMILIA] [smallint]  					0 por ahora (*)
+	[NOMBRE] [varchar] (1000)  						Nombre del Producto
+	[NOMBREREDU] [char] (20)  						Nombre reducido para tickets (*)
+	[UNIDAD] [varchar] (20)  						Código de unidad (mts,kgs,un) .. a validar 
+	[CANTXBULTO] [int]								(*)
+	[BULTOXPALLET] [int] 							(*) 
+	[KGSUNIDAD] [decimal](15, 6)  					(*)
+	[CODALICUOTA] [int] 							Código de Alícuota (a validar)
+	[PUNTCONTVENTA] [varchar] (20) 					Cuenta Contable (a validar) (*)
+	[PUNTCONTCOMPRA] [varchar] (20) 				Cuenta Contable (a validar) (*)
+	[PUNTCONTIMPINTERNO] [varchar] (20) 			Cuenta Contable (a validar) (*)
+	[EXISTMINIMA] [decimal](15, 6) 					(*)
+	[EXISTMAXIMA] [decimal](15, 6)  				(*)
+	[CODIGOBARRA] [varchar] (100)  					(*)
+	[PRESENTACION] [varchar] (100)  				(*)
+
+	-------------
+		
+TABLA ARTICULOS COSTOS (Para poder grabarse tiene que existir la Cabecera) -
+	
+CREATE TABLE [dbo].[ArticulosPreciosCostos] 
+	[IDTABLA] [int] 								Autonumérico (Key UNICA)
+	[CODART] [int] 									Relación con Artículos
+	[NROORDEN] [smallint] 							Nro de Orden consecutivo dentro del Artículo	
+	[DETALLE] [varchar] (100)						Detalle del descuento 
+	[VALOR] [decimal](15, 6) 						Valor
+	[MONEDA] [char] (1) 							Opción (P/D) (P) por defecto
+	[INDICADOR] [char] (2) 							Opción (S/N) (S) por defecto
+	
+	-------------
+	
+TABLA ARTICULOS DESCUENTOS (Para poder grabarse tiene que existir la Cabecera) -
+	
+CREATE TABLE [dbo].[ArticulosDescuentos] 
+	[IDTABLA] [int] 								Autonumérico (Key UNICA)
+	[CODART] [int] 									Relación con Artículos
+	[NROORDEN] [smallint] 							Nro de Orden consecutivo dentro del Artículo
+	[DETALLE] [varchar] (100) 						Detalle del descuento
+	[VALOR] [decimal](15, 6) 						Valor
+
+		-------------
+	
+TABLA ARTICULOS RECARGOS (Para poder grabarse tiene que existir la Cabecera) -
+
+CREATE TABLE [dbo].[ArticulosRecargos] 
+	[IDTABLA] [int] 								Autonumérico (Key UNICA)
+	[CODART] [int] 									Relación con Artículos
+	[NROORDEN] [smallint] 							Nro de Orden consecutivo dentro del Artículo
+	[DETALLE] [varchar] (100)						Detalle del descuento 
+	[VALOR] [decimal](15, 6)						Valor
+
+		-------------
+	
+TABLA ARTICULOS MARCACION (Para poder grabarse tiene que existir la Cabecera) -
+
+CREATE TABLE [dbo].[ArticulosMarcacion] (
+	[IDTABLA] [int] 								Autonumérico (Key UNICA)
+	[CODART] [int] 									Relación con Artículos
+	[NROORDEN] [smallint] 							Nro de Orden consecutivo dentro del Artículo
+	[DETALLE] [varchar] (100) 						Detalle de la marcación
+	[PRECIONETOORIGEN1] [decimal](15, 6) 			(a)=Punto de Partida del Cálculo (sale de Costo-Descuentos+Recargos)
+	[ADICIONALANTESCALCULO] [decimal](15, 6) 		(b)=Ingresado por el usuario
+	[PRECIONETOORIGEN2] [decimal](15, 6) 			(c) = (a) + (b)
+	[VALOR] [decimal](15, 6) 						(d) = Incremento porcentual
+	[PRECIONETOCALCULADO] [decimal](15, 6) 			(e) = (c) incrementado en (d)
+	[ALICUOTAIMPUESTO1] [decimal](7, 2) 			(f) generalmente IVA
+	[VALORIMPUESTOS1] [decimal](15, 6) 				(g) = (e) incrementado en (f)
+	[ALICUOTAIMPUESTO2] [decimal](7, 2) 			0 por ahora
+	[VALORIMPUESTOS2] [decimal](15, 6) 				0 por ahora
+	[VALORIMPUESTOS3] [decimal](15, 6) 				0 por ahora
+	[PRECIOFINALCALCULADO] [decimal](15, 6) 		(e) + (g)	
+	[ADICIONALDESPUESCALCULO] [decimal](15, 6) 		(h) = ingresado por el usuario
+	[PRECIOFINAL] [char] (20) 						(e) + (g) + (h)
+
+		------
+		
+		OTRAS TABLAS ACCESORIAS A ARTICULOS (NO necesarias en esta instancia)
+	
+	
+CREATE TABLE [dbo].[ArticulosAlmacenaje] (
+	[IDTABLA] [int] NOT NULL ,
+	[CODART] [int] NULL ,
+	[LOCALIZACION] [int] NULL ,
+	[SECTORDEPOSITO] [varchar] (20) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL ,
+	[DETALLE] [varchar] (100) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[ArticulosCombo] (
+	[IDTABLA] [int] NOT NULL ,
+	[CODARTCOMBO] [int] NULL ,
+	[CODART] [int] NULL ,
+	[CANTIDAD] [decimal](15, 6) NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[ArticulosConfiguracion] (
+	[IDTABLA] [int] NOT NULL ,
+	[CODART] [int] NULL ,
+	[NROORDEN] [smallint] NULL ,
+	[DETALLE] [varchar] (100) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL ,
+	[VALOR] [varchar] (100) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL 
+) ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].[ArticulosEspecificaciones] (
+	[IDTABLA] [int] NOT NULL ,
+	[CODART] [int] NULL ,
+	[IDIOMA] [char] (3) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL ,
+	[ESPECIFICACION] [varchar] (8000) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[ArticulosLotes] (
+	[IDTABLA] [int] NOT NULL ,
+	[CODART] [int] NULL ,
+	[IDLOTE] [varchar] (100) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL ,
+	[FECHAHORA] [datetime] NULL ,
+	[FECHAHORAVTO] [datetime] NULL ,
+	[ESTADO] [char] (2) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[ArticulosOfertas] (
+	[IDTABLA] [int] NULL ,
+	[CODART] [int] NULL ,
+	[NROORDEN] [smallint] NULL ,
+	[TIPOOFERTA] [char] (2) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL ,
+	[VALOR] [decimal](11, 3) NULL ,
+	[CANTIDADFACTURADA] [decimal](15, 6) NULL ,
+	[CANTIDADBONIFICADA] [decimal](15, 6) NULL ,
+	[VIGENCIAHASTA] [datetime] NULL ,
+	[FECHAALTAOFERTA] [datetime] NULL 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[ArticulosProveedores] (
+	[IDTABLA] [int] NOT NULL ,
+	[CODART] [int] NULL ,
+	[CODIGOPROVEEDOR] [int] NULL ,
+	[DETALLE] [varchar] (100) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL ,
+	[CODIGOORIGINAL] [varchar] (100) COLLATE Traditional_Spanish_CS_AS_KS_WS NULL 
+) ON [PRIMARY]
+GO
+
+

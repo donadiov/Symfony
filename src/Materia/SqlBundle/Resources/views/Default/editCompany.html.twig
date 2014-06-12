@@ -1,0 +1,139 @@
+{%extends "MateriaSqlBundle:Default:index.html.twig"%}
+{%block container %}
+<div class="container" >
+
+{% if login.rol == 'SUPER_ADMIN' %}
+    <form id="form" class="well" method="POST" action="{{path('materia_sql_admin_listCompany')}}" data-validate="parsley">
+{% else %}
+	<form id="form" class="well" method="POST" action="{{path('materia_sql_editMyCompany', {'companyId': login.loginCompanyId})}}" data-validate="parsley">
+{% endif %}
+         <h2>Modificando Empresa {{ company.companyNombrefantasia }}</h2>
+{% if login.rol == 'SUPER_ADMIN' %}         
+        <label>ID de Empresa<input type="text" id="companyId" name="companyId" class="input-xlarge" readonly value="{{ company.companyId }}"></label>
+{% else %}
+		<input type="Hidden" id="companyId" name="companyId" class="input-xlarge" readonly value="{{ company.companyId }}">
+{% endif %}
+<table id="editCompany">
+	<tr>
+	<td colspan=4>
+		<legend>Datos de la Empresa</legend>
+	</td>	
+	</tr>
+	<tr>
+		<td>
+	        <label>Razon Social</label>
+	        <input type="text" id="companyRazonSocial" name="companyRazonSocial" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyRazonSocial }}">
+	    </td>
+	    <td> 	        
+	        <label>Nombre de Fantasia</label>
+	        <input type="text" id="companyNombrefantasia" name="companyNombrefantasia" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyNombrefantasia }}">
+	    </td>
+	    <td> 	        
+	        <label>Clave de empresa</label>
+	        <input type="text" id="companyClave" name="companyClave" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyClave }}">
+	    </td>
+	    <td> 	        
+	        <label>Direccion (calle)</label>
+	        <input type="text" id="companyCalle" name="companyCalle" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyCalle }}">
+	    </td>
+	</tr>
+	<tr>
+		<td>
+	        <label>Direccoin (Numero)</label>
+	        <input type="text" id="companyCalleNro" name="companyCalleNro" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyCalleNro }}">
+	    </td>
+	    <td>
+	        <label>Ciudad</label>
+	        <input type="text" id="companyLocalidad" name="companyLocalidad" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyLocalidad }}">
+	    </td>
+	    <td>
+	        <label>Provincia</label>
+	        <input type="text" id="companyProvincia" name="companyProvincia" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyProvincia }}">
+	    </td>
+	    <td>
+	        <label>Pais</label>
+	        <input type="text" id="companyPais" name="companyPais" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyPais }}">
+	    </td>
+	</tr>
+	<tr>
+		<td>
+	        <label>Codigo Postal</label>
+	        <input type="text" id="companyCp" name="companyCp" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyCp }}">
+	    </td>
+	    <td>
+	        <label>Cuit</label>
+	        <input type="text" id="companyCuit" name="companyCuit" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyCuit }}">
+	    </td>
+	    <td>
+	        <label>Perfil Fiscal</label>
+	        <input type="text" id="companyPerFiscal" name="companyPerFiscal" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyPerFiscal }}">
+	    </td>
+	    <td>
+	        <label>Condicion Ingresos brutos</label>
+	        <input type="text" id="companyCondiibb" name="companyCondiibb" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyCondiibb }}">
+	    </td>
+	</tr>
+	<tr>
+		<td>
+	        <label>Numero Ingresos Brutos</label>
+	        <input type="text" id="companyNiibb" name="companyNiibb" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyNiibb }}">
+	    </td>
+	    <td>
+	        <label>Actividad</label>
+	        <input type="text" id="companyActividad" name="companyActividad" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyActividad }}">
+	    </td>
+	    <td colspan=2>
+	        <label>Observaciones</label>
+	        <textarea type="text" id="companyObservaciones" name="companyObservaciones" class="input-xlarge" data-trigger="change">{{ company.companyObservaciones }}</textarea>
+	    </td>
+	</tr>
+	<tr>
+	<td colspan=4>
+	        <legend>Datos de Usuario Titular</legend>
+	</td>
+	</tr>
+	<tr>
+	    <td>
+	        <label>Nombre del Titular</label>
+	        <input type="text" id="firstName" name="firstName" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyNombreTitular }}">
+	    </td>
+	    <td>
+	        <label>Apellido del Titular</label>
+	        <input type="text" id="lastName" name="lastName" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyApellidoTitular }}">
+	    </td>
+	    <td>
+	        <label>Mail del Titular</label>
+	        <input type="text" id="userMail" name="userMail" class="input-xlarge" data-trigger="change" data-required="true" data-type="email" value="{{ company.companyMail }}">
+	    </td>
+	</tr>
+	<tr>
+		<td>
+	        <label>Usuario Titular</label>
+	        <input type="text" id="userName" name="userName" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyUsuarioTitular }}">
+		</td>
+		<td>
+	        <label>Password</label>
+	        <input type="password" id="password" name="password" class="input-xlarge" data-trigger="change">
+		</td>
+		<td colspan=2>
+{% if login.rol == 'SUPER_ADMIN' %}        
+        <label>Activa</label>
+        <input type="number" min="0" max="1" id="companyActive" name="companyActive" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyActive }}">
+{% else %}
+		<label id="companyStatus">El estado de su empresa es: <bold>ACTIVA</bold></label>
+        <input readonly type="Hidden" min="0" max="1" id="companyActive" name="companyActive" class="input-xlarge" data-trigger="change" data-required="true" value="{{ company.companyActive }}">
+{% endif %}  
+		</td>
+	</tr>
+	<tr>
+		<td colspan=4>
+        <div>
+         <button class="btn btn-primary" type="submit" >Guardar</button>
+        </div>
+        </td>
+	</tr>
+</table>
+    </form>
+</div>
+
+ {%endblock%}

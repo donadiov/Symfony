@@ -1,0 +1,44 @@
+#src/Materiaweb/MateriaBundle/Resources/config/doctrine/Users.orm.yml
+Materiaweb\MateriaBundle\Entity\Users:
+    type: entity
+    table: Users
+    id:
+        userId:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        userName:
+            type: string
+            length: 30 
+            nullable: false
+            column: userName
+        firstName:
+            type: string
+            length: 30 
+            nullable: false
+            column: firstName
+        lastName:
+            type: string
+            length: 30 
+            nullable: false
+            column: lastName
+        password:
+            type: string
+            length: 90 
+            nullable: false
+            column: password
+        userCompanyId:
+            type: integer
+            length: 3 
+            nullable: false
+            column: userCompanyId
+        userMail:
+            type: string
+            length: 50
+            nullable: false
+            column: userMail
+        userRol:
+            type: string
+            length: 15 
+            nullable: false
+            column: userRol

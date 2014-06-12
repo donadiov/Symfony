@@ -1,0 +1,74 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+{%block container %}
+<div class="container">
+
+<h2>Usuarios</h2>
+
+		<table>
+   			<caption>Lista de Usuarios</caption>
+   			<thead>
+		      <tr>
+		         <th>Nombre y Apellido</th>
+		         <th>Nombre de Usuario</th>
+		         <th>Mail</th>
+		         <th>Rol</th>
+		         <th>Accion</th>
+		      </tr>
+   			</thead>
+   			<tbody>
+		    	{% for user in usuarios %}
+		      			<tr class="{{ cycle(['even', 'odd'], loop.index0) }}">
+		      				<td>{{ user.usuarioApellido }} {{ user.usuarioNombre }}</td>
+		      				<td>{{ user.usuarioUsername }}</td>
+		      				<td>{{ user.usuarioMail }}</td>
+		      				<td>{{ user.usuarioRol }}</td>
+		      				<td>
+		      				
+		      					<form id="form" method="POST" action="{{path('lineas_telefonicas_policia_er_editUser')}}" data-validate="parsley">
+									<input type="Hidden" id="usuarioId" name="usuarioId" class="input-xlarge" readonly value="{{ user.usuarioId }}">			
+								<button class="btn btn-primary" type="submit" >Editar</button>
+								{% if user.UsuarioRol != 'SUPER_ADMIN' %}
+									<a class="btn btneliminar" id="btnPopUp{{ user.usuarioId }}">Eliminar</a>
+								{% endif %}
+								</form>
+		      					
+								<script>
+								$(document).ready(function(){
+								  $("#btnPopUp{{ user.usuarioId }}").click(function(){
+								  var $body = $(this.ie6 ? document.body : document);
+										$('.eliminaObjeto{{ user.usuarioId }}').css({
+											width:  $body.width(),
+											height:  $body.height()
+										});
+								     $(".eliminaObjeto{{ user.usuarioId }}").toggle(); 
+								  });
+								  
+								  $("#btnClose{{ user.usuarioId }}").click(function(){
+								     $(".eliminaObjeto{{ user.usuarioId }}").toggle(); 
+								  });
+								});
+								</script>
+								
+								<div class="eliminaObjeto{{ user.usuarioId }}" id="eliminaObjeto" hidden>
+		
+		
+									<form id="form" class="well" method="POST" action="{{path('lineas_telefonicas_policia_er_deleteUser')}}" data-validate="parsley">
+										<span>Esta seguro que desea eliminar el Usuario {{ user.usuarioNombre }} {{ user.usuarioApellido }}</span>
+											<input type="Hidden" id="usuarioId" name="usuarioId" class="input-xlarge" readonly value="{{ user.usuarioId }}">			
+										<button class="btn btn-primary" type="submit" >Eliminar</button>
+										<span class="btn" id="btnClose{{ user.usuarioId }}">Cancelar</span>
+								    </form>
+		
+								</div>
+								
+		      				</td>
+						</tr>
+				{% endfor %}
+   			</tbody>
+		</table>
+		<a href="{{ path('lineas_telefonicas_policia_er_addUser') }}"><button class="btn btn-primary" >Nuevo Usuario</button></a>
+ </div> 
+    {%endblock%}

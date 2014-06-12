@@ -1,0 +1,32 @@
+#src/Materiaweb/MateriaBundle/Resources/config/doctrine/ArticulosDescuentos.orm.yml
+Materiaweb\MateriaBundle\Entity\ArticulosDescuentos:
+    type: entity
+    table: ArticulosDescuentos
+    id:
+        ArtDescIdTabla:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+      ArtDescIdCompany:
+          type: integer
+          length: 2
+          nullable: false
+          column: ArtDescIdCompany
+      ArtDescCodart:
+          type: integer
+          nullable: false
+          column: ArtDescCodart
+      ArtDescNroOrden:
+          type: smallint
+          nullable: false
+          column: ArtDescNroOrden
+      ArtDescDetalle:
+          type: string
+          nullable: false
+          column: ArtDescDetalle
+      ArtDescValor:
+          type: decimal
+          length: 9
+          scale: 6
+          nullable: false
+          column: ArtDescValor

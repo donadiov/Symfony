@@ -1,0 +1,16 @@
+<?php
+// src/Acme/NewStoreBundle/Entity/Product.php
+
+namespace Acme\NewStoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+class Product
+{
+    protected $name;
+
+    protected $price;
+
+    protected $description;
+}
+?>

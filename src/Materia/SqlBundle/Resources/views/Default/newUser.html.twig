@@ -1,0 +1,49 @@
+{%extends "MateriaSqlBundle:Default:index.html.twig"%}
+{%block container %}
+<div class="container" >
+
+
+    <form id="form" class="well" method="POST" action="{{path('materia_sql_saveUser')}}" data-validate="parsley">
+        
+
+        <h2>Registro de usuario</h2>
+        <label>Nombre de usuario</label>
+        <input type="text" id="companyUsuarioTitular" name="companyUsuarioTitular" class="input-xlarge" data-trigger="change" data-required="true">
+        <label>Password</label>
+        <input type="password" name="companyPasswordTitular" class="input-xlarge" data-trigger="change" data-required="true">
+        <label>e-Mail</label>
+        <input type="text" id="companyMail" name="companyMail" class="input-xlarge" data-trigger="change" data-required="true" data-type="email">
+        <label>Nombre</label>
+        <input type="text" id="companyNombretitular" name="companyNombretitular" class="input-xlarge" data-trigger="change" data-required="true">
+        <label>Apellido</label>
+        <input type="text" id="companyApellidotitular" name="companyApellidotitular" class="input-xlarge" data-trigger="change" data-required="true">
+
+        {% if login.rol == 'SUPER_ADMIN' %}
+	        <label>Empresa</label>
+				<select type="text" name="companyId" class="select-xlarge" data-trigger="change" data-required="true">
+					{% for company in companies %}
+						{% if company.companyId != login.loginCompanyId %}
+							<option value="{{ company.companyId }}">{{ company.companyNombrefantasia }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+		{% else %}
+			<input type="Hidden" id="companyId" name="companyId" class="input-xlarge" data-trigger="change" data-required="true" value="{{ login.LoginCompanyId }}" readonly>
+		{% endif %}
+
+        <label>Rol</label>
+		 <select type="text" name="userRol" class="select-xlarge" data-trigger="change" data-required="true">
+        {% for rol in roles %}	
+        	{% if rol.rolName != "SUPER_ADMIN" and rol.rolName != "TITULAR" %}
+   				<option value="{{ rol.rolName }}">{{ rol.rolName }}</option>
+      		{% endif %}
+      	{% endfor %}
+      		
+		</select>        
+        <div>
+         <button class="btn btn-primary" type="submit" >crear Usuario</button>
+        </div>
+    </form>
+</div>
+
+ {%endblock%}

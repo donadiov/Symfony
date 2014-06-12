@@ -1,0 +1,42 @@
+#src/Materiaweb/MateriaBundle/Resources/config/doctrine/ArticulosPreciosCostos.orm.yml
+Materiaweb\MateriaBundle\Entity\ArticulosPreciosCostos:
+    type: entity
+    table: ArticulosPreciosCostos
+    id:
+        ArtPrecCostIdTabla:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+      ArtPrecCostIdCompany:
+          type: integer
+          length: 2
+          nullable: false
+          column: ArtPrecCostIdCompany
+      ArtPrecCostCodart:
+          type: integer
+          nullable: false
+          column: ArtPrecCostCodart
+      ArtPrecCostNroOrden:
+          type: smallint
+          nullable: false
+          column: ArtPrecCostNroOrden
+      ArtPrecCostDetalle:
+          type: string
+          nullable: false
+          column: ArtPrecCostDetalle
+      ArtPrecCostValor:
+          type: decimal
+          length: 9
+          scale: 6
+          nullable: false
+          column: ArtPrecCostValor
+      ArtPrecCostMoneda:
+          type: string
+          length: 1
+          nullable: false
+          column: ArtPrecCostMoneda
+      ArtPrecCostIdentificador:
+          type: decimal
+          length: 1
+          nullable: false
+          column: ArtPrecCostIdentificador

@@ -1,0 +1,60 @@
+COMANDOS UTILES SYMFONY
+
+
+SecretSymfonyHASH
+2110a033e3135935bb071032105709b5b1c
+
+
+
+CLEAR DE CHACHE
+php app/console cache:clear
+
+
+ELIMINA BUNDLE EXISTENTE
+1 - Borrar la carpeta del proyecto/Lote/Bundle dentro de la carpeta SRC de symfony
+2 - ir a app/resources/AppKernel.php y borrar la linea que carga el bundle que queremos eliminar
+3 - ir a app/config/routing.yml y borrar lineas relacionadas
+
+
+
+DONDE SE MANEJAN LOS ERRORES EN SYMFONY
+Los errores en symfony se manejan con la instruccion "throw" - Y son capturados en los archivos que se encuentran en la siguiente carpeta
+/Symfony/vendor/Symfony/Symfony/src/Symfony/Bundle/TwigBundle/Resources/Views/exception
+Todos los archivos en esta carpeta manejan las excepciones y los errores dentro de Symfony, pero los archivos que vemos aqui se renderizan en un template que se encuentra en un directorio anterior
+/Symfony/vendor/Symfony/Symfony/src/Symfony/Bundle/TwigBundle/Resources/Views
+El archivo es "layout.html.twig"
+
+
+GENERA NUEVO BUNDLE
+php app/console generate:bundle
+
+CREA BASES DE DATOS SEGUN PARAMETERS.YML
+php app/console doctrine:database:create
+
+
+GENERA GETTERS Y SETTERS
+php app/console doctrine:generate:entities Materia/Web/MateriawebBundle/Entity
+
+CREA TABLAS EN LA BASE SEGUN ENTIDADES
+php app/console doctrine:schema:update --force
+
+CARGA ACCESOSRIOS o DATOS DE PRUEBA
+php app/console doctrine:fixtures:load
+
+
+SINCRONIZA ASSETS
+php app/console assets:install web --symlink
+
+
+UPDATE COMPOSER
+composer self-update
+
+
+
+
+
+COMANDOS PARA GENERAR ESTRUCTURA DE LINEAS POLICIA
+php app/console doctrine:generate:entities LineasTelefonicas/Policia/ERBundle/Entity
+php app/console doctrine:database:create --connection=lineastelpolicia
+php app/console doctrine:schema:update --force --em=lineastelpolicia
+php app/console doctrine:fixtures:load --fixtures=src/LineasTelefonicas/Policia/ERBundle --em=lineastelpolicia

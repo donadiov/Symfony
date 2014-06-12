@@ -1,0 +1,98 @@
+#src/LineasTelefonicas/Policia/ERBundle/Resources/config/doctrine/Historico.orm.yml
+LineasTelefonicas\Policia\ERBundle\Entity\Historico:
+    type: entity
+    database: 
+    table: Historico
+    id:
+        historicoId:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        lineaHistoricoNumero:
+            type: string
+            length: 15
+            nullable: false
+            column: lineaHistoricoNumero
+        lineaHistoricoEmpresa:
+            type: string
+            length: 15
+            nullable: false
+            column: lineaHistoricoEmpresa
+        lineaHistoricoPlan:
+            type: string
+            length: 15
+            column: lineaHistoricoPlan
+        lineaHistoricoDestino:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaHistoricoDestino
+        lineaHistoricoCargo:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaHistoricoCargo
+        lineaHistoricoIMEI:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaHistoricoIMEI
+        lineaHistoricoMarca:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaHistoricoMarca
+        lineaHistoricoModelo:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaHistoricoModelo    
+        lineaHistoricoUltimoCambio:
+            type: date
+            nullable: false
+            column: lineaHistoricoUltimoCambio
+        lineaHistoricoVoz:
+            type: integer
+            length: 4
+            nullable: false
+            column: lineaHistoricoVoz
+        lineaHistoricoSms:
+            type: integer
+            length: 4
+            nullable: false
+            column: lineaHistoricoSms
+        lineaHistoricoGprs:
+            type: integer
+            length: 4
+            nullable: false
+            column: lineaHistoricoGprs
+        lineaHistoricoDatos:
+            type: string
+            length: 2
+            nullable: false
+            column: lineaHistoricoDatos
+        lineaHistoricoBlackberry:
+            type: string
+            length: 2
+            nullable: false
+            column: lineaHistoricoBlackberry
+        lineaHistoricoRoaming:
+            type: string
+            length: 2
+            nullable: false
+            column: lineaHistoricoRoaming    
+        lineaHistoricoObservaciones:
+            type: text
+            length: 255
+            nullable: false
+            column: lineaHistoricoObservaciones
+        lineaHistoricoAccion:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaHistoricoAccion
+        lineaHistoricoUsuario:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaHistoricoUsuario

@@ -1,0 +1,21 @@
+{%extends "LineasTelefonicasPoliciaERBundle:Default:index.html.twig"%}
+   {%block container %}
+<link href="{{asset('bundles/lineastelefonicaspoliciaer/css/login.css')}}" rel="stylesheet">
+    <div class="container">
+
+
+        <form class="form-signin" method ="POST" action="{{path('lineas_telefonicas_policia_er_homepage')}}" data-validate="parsley">
+            
+        <img src="/bundles/LineasTelefonicasPoliciaER/images/escudopolicia.jpg"/>
+           	
+            	<input type="text" id="username" class="input-block-level" name="username" placeholder="Usuario" data-trigger="change" data-required="true">
+            	<input type="password" id="password" class="input-block-level" name="password" placeholder="Password" data-trigger="change" data-required="true">
+<!--        <label class="checkbox">
+                <input type="checkbox" name="remember" value="remember-me"> Recordarme
+			</label>			-->
+            <button id="login" class="btn btn-large btn-primary" type="submit">Login</button>
+        </form>
+
+    </div> 
+   
+    {%endblock%}

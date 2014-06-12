@@ -1,0 +1,24 @@
+# This file is auto-generated during the composer install
+parameters:
+#MATERIAWEB
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: '3306'
+    database_name: materiaweb
+    database_user: root
+    database_password: efldvl2102
+#MAILER    
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: es
+    secret: 2110a033e3135935bb071032105709b5b1c
+    
+#LINEASTELEFONICASPOLICIA
+    database_driver_poli: pdo_mysql
+    database_host_poli: 127.0.0.1
+    database_port_poli: '3306'
+    database_name_poli: lineastelpolicia
+    database_user_poli: root
+    database_password_poli: efldvl2102

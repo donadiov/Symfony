@@ -1,0 +1,78 @@
+{%extends "MateriawebMateriaBundle:Default:index.html.twig"%}
+{%block container %}
+<div class="container" >
+
+{% if user is defined %}
+{% if login.rol == 'SUPERADMIN' %}
+    <form id="form" class="well" method="POST" action="{{path('materiaweb_materia_admin_listUser')}}" data-validate="parsley">
+{% else %}
+	<form id="form" class="well" method="POST" action="{{path('materiaweb_materia_listCompanyUser')}}" data-validate="parsley">
+{% endif %}
+        <h2>Edicion de Usuario</h2>
+        <label>ID de usuario</label>
+        <input type="text" id="userId" name="userId" class="input-xlarge" data-trigger="change" data-required="true" value="{{ user.userId }}" readonly>
+        <label>Nombre de usuario</label>
+        <input type="text" id="userName" name="userName" class="input-xlarge" data-trigger="change" data-required="true" value="{{ user.userName }}">
+        <label>Password</label>
+        <input type="password" name="password" class="input-xlarge" data-trigger="change"><small>Ingrese una nueva password si desea cambiar la existente</small>
+        <label>e-Mail</label>
+        <input type="text" id="userMail" name="userMail" class="input-xlarge" data-trigger="change" data-required="true" data-type="email" value="{{ user.userMail }}">
+        <label>Nombre</label>
+        <input type="text" id="firstName" name="firstName" class="input-xlarge" data-trigger="change" data-required="true" value="{{ user.firstname }}">
+        <label>Apellido</label>
+        <input type="text" id="lastName" name="lastName" class="input-xlarge" data-trigger="change" data-required="true" value="{{ user.lastName }}">
+        <label>Rol</label>
+		 <select type="text" name="userRol" class="select-xlarge" data-trigger="change" data-required="true" value="{{ user.userRol }}">
+        			<option value="{{ user.userRol }}">{{ user.userRol }}</option>
+        	{% for rol in roles %}
+        		{% if user.userRol != rol.rolName %}
+      				<option value="{{ rol.rolName }}">{{ rol.rolName }}</option>
+      			{% endif %}
+			{% endfor %}
+		</select>        
+        <div>
+         <button class="btn btn-primary" type="submit" >Guardar Usuario</button>
+        </div>
+    </form>
+{% else %}
+    <form id="form" class="well" method="POST" action="{{path('materiaweb_materia_signup')}}" data-validate="parsley">
+
+        <h2>Registro<small>{{ mensaje }}</small></h2>
+        <label>Nombre de usuario</label>
+        <input type="text" id="userName" name="userName" class="input-xlarge" data-trigger="change" data-required="true">
+        <label>Password</label>
+        <input type="password" name="password" class="input-xlarge" data-trigger="change" data-required="true">
+        <label>e-Mail</label>
+        <input type="text" id="userMail" name="userMail" class="input-xlarge" data-trigger="change" data-required="true" data-type="email">
+        <label>Nombre</label>
+        <input type="text" id="firstName" name="firstName" class="input-xlarge" data-trigger="change" data-required="true">
+        <label>Apellido</label>
+        <input type="text" id="lastName" name="lastName" class="input-xlarge" data-trigger="change" data-required="true">
+
+        {% if login.rol == 'SUPER_ADMIN' %}
+	        <label>Empresa</label>
+				<select type="text" name="companyId" class="select-xlarge" data-trigger="change" data-required="true">
+					{% for company in companies %}
+						{% if company.companyId != login.loginCompanyId %}
+							<option value="{{ company.companyId }}">{{ company.companyNombreFantasia }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+		{% else %}
+			<input type="Hidden" id="companyId" name="companyId" class="input-xlarge" data-trigger="change" data-required="true" value="{{ login.LoginCompanyId }}" readonly>
+		{% endif %}
+
+        <label>Rol</label>
+		 <select type="text" name="userRol" class="select-xlarge" data-trigger="change" data-required="true">
+        	{% for rol in roles %}
+      				<option value="{{ rol.rolName }}">{{ rol.rolName }}</option>
+			{% endfor %}
+		</select>        
+        <div>
+         <button class="btn btn-primary" type="submit" >crear Usuario</button>
+        </div>
+    </form>
+{% endif %}
+</div>
+
+ {%endblock%}

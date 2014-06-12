@@ -1,0 +1,88 @@
+#src/LineasTelefonicas/Policia/ERBundle/Resources/config/doctrine/Lineas.orm.yml
+LineasTelefonicas\Policia\ERBundle\Entity\Lineas:
+    type: entity
+    database: 
+    table: Lineas
+    id:
+        lineaId:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        lineaNumero:
+            type: string
+            length: 15
+            nullable: false
+            column: lineaNumero
+        lineaEmpresa:
+            type: string
+            length: 15
+            nullable: false
+            column: lineaEmpresa
+        lineaPlan:
+            type: string
+            length: 15
+            column: lineaPlan
+        lineaDestino:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaDestino
+        lineaCargo:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaCargo
+        lineaIMEI:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaIMEI
+        lineaMarca:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaMarca
+        lineaModelo:
+            type: string
+            length: 30
+            nullable: false
+            column: lineaModelo    
+        lineaUltimoCambio:
+            type: date
+            nullable: false
+            column: lineaUltimoCambio
+        lineaVoz:
+            type: integer
+            length: 4
+            nullable: false
+            column: lineaVoz
+        lineaSms:
+            type: integer
+            length: 4
+            nullable: false
+            column: lineaSms
+        lineaGprs:
+            type: integer
+            length: 4
+            nullable: false
+            column: lineaGprs
+        lineaDatos:
+            type: string
+            length: 2
+            nullable: false
+            column: lineaDatos
+        lineaBlackberry:
+            type: string
+            length: 2
+            nullable: false
+            column: lineaBlackberry
+        lineaRoaming:
+            type: string
+            length: 2
+            nullable: false
+            column: lineaRoaming    
+        lineaObservaciones:
+            type: text
+            length: 255
+            nullable: false
+            column: lineaObservaciones

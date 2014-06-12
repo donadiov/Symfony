@@ -1,0 +1,48 @@
+{%extends "MateriaSqlBundle:Default:index.html.twig"%}
+{%block stylesheets %}
+
+{%endblock%}
+   {%block container %}
+<div class="container">
+
+<h2>Empresas</h2>
+		<table>
+   			<caption>Lista de empresas creadas</caption>
+   			<thead>
+		      <tr>
+		         <th>ID</th>
+		         <th>Razon Social</th>
+		         <th>Nombre de Fantasia</th>
+		         <th>Clave</th>
+		         <th>Mail</th>
+		         <th>Titular</th>
+		         <th>Activa</th>
+		         <th>Accion</th>
+		      </tr>
+   			</thead>
+   			<tbody>
+		    	{% for company in companies %}
+      			<tr class="{{ cycle(['even', 'odd'], loop.index0) }}">
+      				<td>{{ company.companyId }}</td>
+      				<td>{{ company.companyRazonSocial }}</td>
+      				<td>{{ company.companyNombrefantasia }}</td>
+      				<td>{{ company.companyClave }}</td>
+      				<td>{{ company.companyMail }}</td>
+      				<td>{{ company.companyNombreTitular }} {{ company.companyApellidoTitular }}</td>
+      				<td>
+      					{% if company.companyActive == 0 %}
+      						NO
+      					{% else %}
+      						SI
+      					{% endif %}
+      				</td>
+      				<td><a href="{{path('materia_sql_editMyCompany', {'companyId': company.companyId})}}">Editar</a></td>
+				</tr>
+				{% endfor %}
+   			</tbody>
+		</table>
+
+ </div> 
+ 
+ {{ dump(login) }}
+    {%endblock%}
